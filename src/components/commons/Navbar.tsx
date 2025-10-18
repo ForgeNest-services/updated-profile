@@ -12,6 +12,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navLinksRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +25,9 @@ export default function Navbar() {
         // Only animate on large screens
         if (window.innerWidth >= 1024) {
           if (shouldBeScrolled) {
-            // Transition to hamburger
-            if (navLinksRef.current && hamburgerRef.current) {
-              gsap.to(navLinksRef.current, {
+            // Transition to hamburger - hide logo and nav links
+            if (navLinksRef.current && hamburgerRef.current && logoRef.current) {
+              gsap.to([navLinksRef.current, logoRef.current], {
                 opacity: 0,
                 x: 20,
                 duration: 0.3,
@@ -41,8 +42,8 @@ export default function Navbar() {
               });
             }
           } else {
-            // Transition to nav links
-            if (navLinksRef.current && hamburgerRef.current) {
+            // Transition to nav links - show logo and nav links
+            if (navLinksRef.current && hamburgerRef.current && logoRef.current) {
               gsap.to(hamburgerRef.current, {
                 scale: 0,
                 opacity: 0,
@@ -50,7 +51,7 @@ export default function Navbar() {
                 ease: 'power2.inOut',
                 onComplete: () => {
                   gsap.fromTo(
-                    navLinksRef.current,
+                    [navLinksRef.current, logoRef.current],
                     { opacity: 0, x: 20 },
                     { opacity: 1, x: 0, duration: 0.3, ease: 'power2.out' }
                   );
@@ -73,8 +74,11 @@ export default function Navbar() {
           <nav className="flex justify-between items-center bg-background/80 backdrop-blur-md rounded-full px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
             {/* Logo */}
             <Link 
+              ref={logoRef}
               href="/" 
-              className="font-oswald text-foreground text-lg sm:text-base lg:text-lg font-medium tracking-wider hover:opacity-70 transition-opacity duration-300"
+              className={`font-oswald text-foreground text-sm text-wrap sm:text-sm lg:text-lg font-medium tracking-wider hover:opacity-70 transition-opacity duration-300 ${
+                isScrolled ? 'lg:opacity-0 pointer-events-none' : 'lg:opacity-100'
+              }`}
             >
               FORGENEST SERVICES
             </Link>
@@ -102,7 +106,7 @@ export default function Navbar() {
             <button
               ref={hamburgerRef}
               onClick={() => setIsMobileMenuOpen(true)}
-              className={`lg:absolute lg:right-8 flex items-center justify-center text-foreground hover:opacity-70 transition-opacity duration-300 ${
+              className={`flex items-center justify-center bg-foreground text-white rounded-full p-2 hover:opacity-80 transition-opacity duration-300 lg:absolute lg:right-8 ${
                 isScrolled ? 'lg:scale-100 lg:opacity-100' : 'lg:scale-0 lg:opacity-0'
               }`}
               aria-label="Open menu"

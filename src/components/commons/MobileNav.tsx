@@ -72,7 +72,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 className="group flex items-center justify-between w-full text-xl sm:text-2xl md:text-3xl font-oswald capitalize hover:translate-x-1 transition-transform duration-300"
               >
                 <span>{link.label}</span>
-                <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="flex-shrink-0 opacity-100 lg:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                   <svg 
                     width="48" 
                     height="24" 
