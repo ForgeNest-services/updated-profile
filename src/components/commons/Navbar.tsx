@@ -70,8 +70,8 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 w-full">
-        <div className="w-full max-w-screen-4xl mx-auto px-2 sm:px-4 lg:px-6 py-2 sm:py-4">
-          <nav className="flex justify-between items-center bg-background/80 backdrop-blur-md rounded-full px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+        <div className="w-full max-w-screen-2xl mx-auto px-2 sm:px-4 lg:px-6 py-2 sm:py-4">
+          <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
             {/* Logo */}
             <Link 
               ref={logoRef}
