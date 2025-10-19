@@ -234,7 +234,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen bg-background overflow-hidden flex items-center justify-center py-20 "
+      className="relative bg-background overflow-hidden flex items-center justify-center py-28"
     >
       {/* Decorative floating circles */}
       {circles.map((circle, index) => (
@@ -247,7 +247,7 @@ export default function Hero() {
         />
       ))}
 
-      <div className="bg-[#f8f8f8] border-2 border-foreground/30 relative max-w-screen-2xl mx-auto px-4 md:px-12 lg:px-20 py-4 lg:py-12 rounded-3xl shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-x-8 lg:gap-x-12">
+      <div className="bg-[#f8f8f8] border-2 border-foreground/30 relative max-w-screen-2xl mx-auto px-4 md:px-12 lg:px-20 py-4 lg:py-12 rounded-3xl shadow-2xl flex flex-col-reverse md:flex-row gap-y-8 md:gap-x-8 lg:gap-x-12 justify-start item-start ">
         <div className="max-w-lg space-y-6">
           {/* Animated Title */}
           <h1 className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
@@ -275,8 +275,6 @@ export default function Hero() {
           >
             {/* Fading border right */}
             <div className="absolute top-0 right-0 h-full w-1 bg-gradient-to-b from-transparent via-white to-transparent opacity-50" />
-
-            <div className="flex flex-col justify-start items-start space-y-6">
               <p
                 ref={subtitleTextRef}
                 className="text-sm md:text-base lg:text-lg font-oswald font-light text-justify"
@@ -285,10 +283,9 @@ export default function Hero() {
                 We blend technology, creativity, and strategy to forge digital
                 experiences that inspire growth and imagination.
               </p>
-            </div>
           </div>
           <div>
-            <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar-image]:grayscale-0">
+            <div className="*:data-[slot=avatar]:ring-background flex justify-center items-center md:justify-start pt-10 -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar-image]:grayscale-0">
               {avatars.map((a, index) => (
                 <Avatar key={index}>
                   <AvatarImage src={a.imageUrl} alt={a.profileUrl} />
@@ -301,7 +298,7 @@ export default function Hero() {
 
         {/* Logo Animation Placeholder */}
         <div ref={lottieRef} className="flex items-center justify-center">
-          <div className="relative w-full h-48 md:h-full flex items-center justify-center">
+          <div className="relative w-full  flex items-center justify-center">
             {/* <video src="/video/logo.mp4" autoPlay loop muted playsInline /> */}
             {View}
           </div>
