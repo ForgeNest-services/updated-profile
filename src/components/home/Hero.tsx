@@ -6,6 +6,7 @@ import { useLottie } from "lottie-react";
 import heroWalkAnimation from "@/lib/animations/hero.json";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { avatars } from "@/lib/constants/avatars";
+import { SpinningText } from "@/components/ui/spinning-text"
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -284,7 +285,7 @@ export default function Hero() {
                 experiences that inspire growth and imagination.
               </p>
           </div>
-          <div>
+          <div className="relative">
             <div className="*:data-[slot=avatar]:ring-background flex justify-center items-center md:justify-start pt-10 -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar-image]:grayscale-0">
               {avatars.map((a, index) => (
                 <Avatar key={index}>
@@ -292,6 +293,9 @@ export default function Hero() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
               ))}
+            </div>
+            <div className="hidden lg:block absolute -bottom-25 left-10">
+            <SpinningText>Forgenest Services Pvt. Ltd.</SpinningText>
             </div>
           </div>
         </div>
