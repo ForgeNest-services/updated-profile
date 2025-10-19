@@ -4,6 +4,9 @@ import { gsap } from "gsap";
 import { ChevronDown } from "lucide-react";
 import { useLottie } from "lottie-react";
 import heroWalkAnimation from "@/lib/animations/hero.json";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { avatars } from "@/lib/constants/avatars";
+
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleWordsRef = useRef<HTMLSpanElement[]>([]);
@@ -16,8 +19,10 @@ export default function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Filter out null refs with null checks
-      const validTitleWords = titleWordsRef.current?.filter((el) => el !== null) || [];
-      const validCircles = circlesRef.current?.filter((el) => el !== null) || [];
+      const validTitleWords =
+        titleWordsRef.current?.filter((el) => el !== null) || [];
+      const validCircles =
+        circlesRef.current?.filter((el) => el !== null) || [];
 
       if (validTitleWords.length === 0) return;
 
@@ -171,9 +176,10 @@ export default function Hero() {
         });
       });
 
-       // Animate logo scatter circles
-       const validLogoCircles = circlesRef.current?.filter((el) => el !== null) || [];
-       if (validLogoCircles.length > 0) {
+      // Animate logo scatter circles
+      const validLogoCircles =
+        circlesRef.current?.filter((el) => el !== null) || [];
+      if (validLogoCircles.length > 0) {
         validLogoCircles.forEach((circle, index) => {
           gsap.to(circle, {
             x: `${(Math.random() - 0.5) * 100}%`,
@@ -197,11 +203,11 @@ export default function Hero() {
     loop: true,
     autoplay: true,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid meet',
+      preserveAspectRatio: "xMidYMid meet",
     },
     style: {
-      width: '80%',
-      height: '80%',
+      width: "80%",
+      height: "80%",
     },
   };
 
@@ -241,10 +247,10 @@ export default function Hero() {
         />
       ))}
 
-      <div className="bg-[#f8f8f8] border-2 border-foreground/30 relative max-w-screen-2xl mx-auto px-4 md:px-12 lg:px-20 py-20 rounded-3xl shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-x-8 lg:gap-x-12">
+      <div className="bg-[#f8f8f8] border-2 border-foreground/30 relative max-w-screen-2xl mx-auto px-4 md:px-12 lg:px-20 py-4 lg:py-12 rounded-3xl shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-x-8 lg:gap-x-12">
         <div className="max-w-lg space-y-6">
           {/* Animated Title */}
-          <h1 className="text-2xl md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+          <h1 className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
             {titleWords.map((word, index) => (
               <span
                 key={index}
@@ -255,7 +261,9 @@ export default function Hero() {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {word}
-                {index < titleWords.length - 1 && <span className="inline-block w-2" />}
+                {index < titleWords.length - 1 && (
+                  <span className="inline-block w-2" />
+                )}
               </span>
             ))}
           </h1>
@@ -268,20 +276,32 @@ export default function Hero() {
             {/* Fading border right */}
             <div className="absolute top-0 right-0 h-full w-1 bg-gradient-to-b from-transparent via-white to-transparent opacity-50" />
 
-            <p
-              ref={subtitleTextRef}
-              className="text-sm md:text-base lg:text-lg font-oswald font-light text-justify"
-            >
-              A space where ideas are nurtured, designed, and brought to life.
-              We blend technology, creativity, and strategy to forge digital
-              experiences that inspire growth and imagination.
-            </p>
+            <div className="flex flex-col justify-start items-start space-y-6">
+              <p
+                ref={subtitleTextRef}
+                className="text-sm md:text-base lg:text-lg font-oswald font-light text-justify"
+              >
+                A space where ideas are nurtured, designed, and brought to life.
+                We blend technology, creativity, and strategy to forge digital
+                experiences that inspire growth and imagination.
+              </p>
+            </div>
+          </div>
+          <div>
+            <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar-image]:grayscale-0">
+              {avatars.map((a, index) => (
+                <Avatar key={index}>
+                  <AvatarImage src={a.imageUrl} alt={a.profileUrl} />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Logo Animation Placeholder */}
         <div ref={lottieRef} className="flex items-center justify-center">
-          <div className="relative w-full h-48 md:h-64 flex items-center justify-center">
+          <div className="relative w-full h-48 md:h-full flex items-center justify-center">
             {/* <video src="/video/logo.mp4" autoPlay loop muted playsInline /> */}
             {View}
           </div>
