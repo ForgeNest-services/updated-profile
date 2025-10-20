@@ -39,7 +39,7 @@ export default function WhatWeDo() {
   ));
 
   return (
-    <section className="max-w-screen-4xl mx-auto bg-background py-10 text-foreground">
+    <section className="max-w-screen-4xl mx-auto bg-background py-20 md:py-32 text-foreground">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-start items-start flex-col">
           <h2 className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
@@ -73,12 +73,12 @@ const data = [
   {
     category: "Mobile Apps",
     title: "Transforming ideas into mobile experiences.",
-    src: "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=2000&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2000&auto=format&fit=crop",
     content: (
       <ServiceContent
         title="Mobile App Development"
         description="From Android to iOS, we design mobile experiences that engage users and drive growth — blending smooth UX with reliable backend architecture."
-        image="https://assets.aceternity.com/iphone.png"
+        image="https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
       />
     ),
   },
@@ -121,12 +121,12 @@ const data = [
   {
     category: "Motion Design",
     title: "Bring ideas to life with motion.",
-    src: "/images/background.svg",
+    src: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2000&auto=format&fit=crop",
     content: (
       <ServiceContent
         title="Motion Design & Animation"
         description="We create engaging motion graphics, explainer videos, and product animations that elevate your brand and captivate your audience — blending creativity with storytelling."
-        image="/images/background.svg"
+        image="https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=800&auto=format&fit=crop"
       />
     ),
   },

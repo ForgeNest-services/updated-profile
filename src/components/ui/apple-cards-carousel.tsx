@@ -54,11 +54,19 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     const container = containerRef.current;
     const cards = container.children;
 
-    // Calculate total scroll distance
-    const cardWidth = window.innerWidth < 768 ? 230 : 384;
+    // Calculate total scroll distance with better mobile handling
+    const isMobile = window.innerWidth < 768;
+    const cardWidth = isMobile ? 230 : 384;
     const gap = 16;
     const totalWidth = (cardWidth + gap) * cards.length;
-    const maxScroll = totalWidth - carousel.clientWidth + (cardWidth + gap); // Add extra scroll to show all cards
+
+    // For mobile, ensure last card is fully visible by adding extra scroll
+    // For desktop, end when last card is visible
+    const extraScroll = isMobile ? cardWidth * 0.5 : 0; // Add 50% of card width on mobile for better visibility
+    const maxScroll = Math.max(
+      0,
+      totalWidth - carousel.clientWidth + extraScroll
+    );
 
     // Create ScrollTrigger animation
     const animation = gsap.to(container, {
@@ -67,7 +75,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
       scrollTrigger: {
         trigger: carousel,
         start: "top top",
-        end: () => `+=${maxScroll * 2}`,
+        end: () => `+=${maxScroll * (isMobile ? 1.5 : 2)}`,
         scrub: 1,
         pin: true,
         invalidateOnRefresh: true,
@@ -131,7 +139,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     >
       <div className="relative">
         <div
-          className="w-full py-10 md:py-20 overflow-hidden"
+          className="w-full py-16 md:py-24 overflow-hidden"
           ref={carouselRef}
         >
           <div

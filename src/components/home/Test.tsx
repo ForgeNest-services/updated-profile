@@ -1,42 +1,27 @@
 import React from "react";
-import { motion } from "motion/react";
 
-interface TestProps {
-  backgroundImage: string;
-}
-
-export default function Test({ backgroundImage }: TestProps) {
+export default function Test() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="relative min-h-screen w-full overflow-hidden"
+    <section
+      className="min-h-screen w-full flex items-center justify-center relative"
       style={{
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2000&auto=format&fit=crop')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
       }}
     >
-      {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/40" />
-
-      {/* Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-center text-white p-8"
-        >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Motion Design</h1>
-          <p className="text-xl md:text-2xl max-w-2xl mx-auto">
-            Welcome to the next section! This background is now the zoomed image
-            from the Motion Design card.
-          </p>
-        </motion.div>
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      <div className="relative z-10 text-center px-4">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+          Next Section
+        </h1>
+        <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
+          The journey continues with seamless transitions and engaging
+          experiences
+        </p>
       </div>
-    </motion.section>
+    </section>
   );
 }
