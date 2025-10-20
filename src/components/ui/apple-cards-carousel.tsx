@@ -15,6 +15,10 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface CarouselProps {
   items: React.ReactElement[];
@@ -38,16 +42,50 @@ export const CarouselContext = createContext<{
 
 export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   const carouselRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = React.useState(false);
   const [canScrollRight, setCanScrollRight] = React.useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollLeft = initialScroll;
-      checkScrollability();
-    }
-  }, [initialScroll]);
+    if (!carouselRef.current || !containerRef.current) return;
+
+    const carousel = carouselRef.current;
+    const container = containerRef.current;
+    const cards = container.children;
+
+    // Calculate total scroll distance
+    const cardWidth = window.innerWidth < 768 ? 230 : 384;
+    const gap = 16;
+    const totalWidth = (cardWidth + gap) * cards.length;
+    const maxScroll = totalWidth - carousel.clientWidth;
+
+    // Create ScrollTrigger animation
+    const animation = gsap.to(container, {
+      x: -maxScroll,
+      ease: "none",
+      scrollTrigger: {
+        trigger: carousel,
+        start: "top top",
+        end: () => `+=${maxScroll * 2}`,
+        scrub: 1,
+        pin: true,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const currentScroll = progress * maxScroll;
+          
+          // Update button states
+          setCanScrollLeft(currentScroll > 0);
+          setCanScrollRight(currentScroll < maxScroll);
+        }
+      }
+    });
+
+    return () => {
+      animation.kill();
+    };
+  }, [items]);
 
   const checkScrollability = () => {
     if (carouselRef.current) {
@@ -59,27 +97,28 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      const cardWidth = isMobile() ? 230 : 384;
+      const gap = isMobile() ? 16 : 16;
+      carouselRef.current.scrollBy({ 
+        left: -(cardWidth + gap), 
+        behavior: "smooth" 
+      });
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      const cardWidth = isMobile() ? 230 : 384;
+      const gap = isMobile() ? 16 : 16;
+      carouselRef.current.scrollBy({ 
+        left: cardWidth + gap, 
+        behavior: "smooth" 
+      });
     }
   };
 
   const handleCardClose = (index: number) => {
-    if (carouselRef.current) {
-      const cardWidth = isMobile() ? 230 : 384; // (md:w-96)
-      const gap = isMobile() ? 4 : 8;
-      const scrollPosition = (cardWidth + gap) * (index + 1);
-      carouselRef.current.scrollTo({
-        left: scrollPosition,
-        behavior: "smooth",
-      });
-      setCurrentIndex(index);
-    }
+    setCurrentIndex(index);
   };
 
   const isMobile = () => {
@@ -92,21 +131,15 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     >
       <div className="relative">
         <div
-          className="max-w-screen-2xl flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
+          className="w-full py-10 md:py-20 overflow-hidden"
           ref={carouselRef}
-          onScroll={checkScrollability}
         >
           <div
             className={cn(
-              "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l",
-            )}
-          ></div>
-
-          <div
-            className={cn(
               "flex flex-row justify-start gap-4 pl-4",
-              "mx-auto max-w-7xl", // remove max-w-4xl if you want the carousel to span the full width of its container
+              "will-change-transform", // Optimize for animations
             )}
+            ref={containerRef}
           >
             {items.map((item, index) => (
               <motion.div
@@ -129,28 +162,12 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   ease: "easeOut",
                 }}
                 key={"card" + index}
-                className="rounded-3xl last:pr-[5%] md:last:pr-[33%]"
+                className="rounded-3xl flex-shrink-0"
               >
                 {item}
               </motion.div>
             ))}
           </div>
-        </div>
-        <div className="mr-10 flex justify-end gap-2">
-          <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
-          >
-            <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
-          </button>
-          <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
-            onClick={scrollRight}
-            disabled={!canScrollRight}
-          >
-            <IconArrowNarrowRight className="h-6 w-6 text-gray-500" />
-          </button>
         </div>
       </div>
     </CarouselContext.Provider>
