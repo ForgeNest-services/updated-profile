@@ -114,28 +114,27 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="bg-background text-foreground py-20 md:py-32 overflow-hidden w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8"
+      className="bg-background text-foreground py-20 md:py-32 overflow-hidden w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4"
     >
       {/* Sticky Title - Left Side */}
       <div className="flex justify-start items-start flex-col">
         <h2 className="font-oswald text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight">
           OUR VISION
         </h2>
-        <div className="mt-6 w-60 h-1 bg-foreground" />
+        <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
       </div>
-      <div className="">
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-16">
           {/* 3D Building Background - Full Height Canvas */}
           <div
-            className="lg:col-span-1 pointer-events-none opacity-15 z-0"
-            style={{ minHeight: "1200px" }}
+            className="hidden md:block lg:col-span-1 pointer-events-none opacity-15 z-0"
+            style={{ height: "1200px" }}
           >
             <Scene3D scrollProgress={scrollProgress} />
           </div>
           {/* Scrolling Content - Right Side (2 columns) */}
           <div
             ref={contentRef}
-            className="lg:col-span-2 space-y-16 md:space-y-24"
+            className="lg:col-span-2 space-y-16 md:space-y-24 text-justify"
           >
             {/* Introduction */}
             <div className="space-y-4">
@@ -226,7 +225,6 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 }

@@ -19,7 +19,7 @@ export default function Scene3D({ scrollProgress }: Scene3DProps) {
   return (
     <Canvas 
       shadows 
-      style={{ height: '100%', minHeight: '1200px' }}
+      style={{ height: '1200px' }}
       gl={{ alpha: true, antialias: true }}
     >
       <Suspense fallback={null}>
