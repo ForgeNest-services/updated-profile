@@ -123,11 +123,11 @@ export default function About() {
         </h2>
         <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
       </div>
-        <div className="grid lg:grid-cols-3 gap-8 lg:gap-16">
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-center">
           {/* 3D Building Background - Full Height Canvas */}
           <div
-            className="hidden md:block lg:col-span-1 pointer-events-none opacity-15 z-0"
-            style={{ height: "1200px" }}
+            className="hidden md:block lg:col-span-1 pointer-events-none opacity-40 z-0"
+            style={{ height: "1600px" }}
           >
             <Scene3D scrollProgress={scrollProgress} />
           </div>
