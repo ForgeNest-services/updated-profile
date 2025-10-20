@@ -160,90 +160,92 @@ export default function OurProcess() {
     >
       <div
         ref={overlayRef}
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-none"
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-none rounded-2xl"
       />
-      <div className="relative z-10 max-w-screen-2xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-2xl text-background md:text-4xl lg:text-6xl font-oswald font-normal tracking-tighter leading-tight mb-4">
-            Our Process
-          </h2>
-          <div className="w-20 lg:w-40 h-1 bg-background mx-auto mb-6" />
-          <p className="text-lg md:text-xl text-background/80 max-w-3xl mx-auto">
-            From concept to completion, we follow a proven methodology that
-            ensures exceptional results and seamless collaboration.
-          </p>
-        </div>
-
-        {/* Process Steps */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Snake SVG Path */}
-          <svg
-            className="absolute left-8 top-0 w-2 h-full"
-            viewBox="0 0 4 1000"
-            preserveAspectRatio="none"
-          >
-            <path
-              ref={snakeRef}
-              d="M2,50 Q2,200 2,200 T2,400 T2,600 T2,800 T2,950"
-              stroke="url(#gradient)"
-              strokeWidth="4"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#3B82F6" />
-                <stop offset="50%" stopColor="#8B5CF6" />
-                <stop offset="100%" stopColor="#EC4899" />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          {/* Steps */}
-          <div className="space-y-16">
-            {processSteps.map((step, index) => (
-              <div
-                key={index}
-                ref={(el) => {
-                  if (el) stepsRef.current[index] = el;
-                }}
-                className="flex items-center gap-8"
-              >
-                {/* Step Number & Icon */}
-                <div className="flex-shrink-0 relative z-10">
-                  <div
-                    className={`w-16 h-16 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-white shadow-lg`}
-                  >
-                    {step.icon}
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-foreground text-background rounded-full flex items-center justify-center text-xs font-bold">
-                    {index + 1}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 bg-gray-50 dark:bg-neutral-800 p-6 rounded-2xl shadow-sm">
-                  <h3 className="text-xl md:text-2xl font-oswald font-semibold text-foreground mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-foreground/70 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+      <div className="relative z-10 max-w-screen-2xl mx-auto py-10">
+        <div className="backdrop-blur-xl bg-white/10 py-10 rounded-3xl border space-y-6">
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <h2 className="text-2xl text-background md:text-4xl lg:text-6xl font-oswald font-normal tracking-tighter leading-tight mb-4">
+              Our Process
+            </h2>
+            <div className="w-20 lg:w-40 h-1 bg-background mx-auto" />
+            <p className="text-sm md:text-xl text-neutral-300 max-w-3xl mx-auto px-2">
+              From concept to completion, we follow a proven methodology that
+              ensures exceptional results and seamless collaboration.
+            </p>
           </div>
-        </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-background/80 mb-6">
-            Ready to start your project?
-          </p>
-          <button className="bg-foreground text-background px-8 py-4 rounded-full font-oswald text-lg uppercase hover:opacity-90 transition-opacity duration-300">
-            Let's Begin
-          </button>
+          {/* Process Steps */}
+          <div className="relative max-w-4xl mx-auto">
+            {/* Snake SVG Path */}
+            <svg
+              className="absolute left-8 top-0 w-2 h-full"
+              viewBox="0 0 4 1000"
+              preserveAspectRatio="none"
+            >
+              <path
+                ref={snakeRef}
+                d="M2,50 Q2,200 2,200 T2,400 T2,600 T2,800 T2,950"
+                stroke="url(#gradient)"
+                strokeWidth="4"
+                fill="none"
+                strokeLinecap="round"
+              />
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#3B82F6" />
+                  <stop offset="50%" stopColor="#8B5CF6" />
+                  <stop offset="100%" stopColor="#EC4899" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            {/* Steps */}
+            <div className="space-y-6 md:space-y-10 lg:space-y-14">
+              {processSteps.map((step, index) => (
+                <div
+                  key={index}
+                  ref={(el) => {
+                    if (el) stepsRef.current[index] = el;
+                  }}
+                  className="flex items-center flex-col md:flex-row gap-8 border border-white/20 p-6 rounded-2xl shadow-lg"
+                >
+                  {/* Step Number & Icon */}
+                  <div className="flex-shrink-0 relative z-10">
+                    <div
+                      className={`w-16 h-16 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-white shadow-lg`}
+                    >
+                      {step.icon}
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs font-bold">
+                      {index + 1}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 text-center md:text-start">
+                    <h3 className="text-xl md:text-2xl font-oswald font-semibold text-white mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-white/80 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="text-center mt-16">
+            <p className="text-lg text-background/80 mb-6">
+              Ready to start your project?
+            </p>
+            <button className="bg-foreground text-background px-8 py-4 rounded-full font-oswald text-lg uppercase hover:opacity-90 transition-opacity duration-300">
+              Let's Begin
+            </button>
+          </div>
         </div>
       </div>
     </section>
