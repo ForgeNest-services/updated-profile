@@ -3,7 +3,6 @@ import { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import "@react-three/fiber";
 
 interface BuildingModelProps {
   scrollProgress: number;
@@ -11,35 +10,41 @@ interface BuildingModelProps {
 
 export default function BuildingModel({ scrollProgress }: BuildingModelProps) {
   const groupRef = useRef<THREE.Group>(null);
-  const { scene } = useGLTF("/models/building.glb");
 
-  useEffect(() => {
-    if (scene) {
-      scene.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.material = new THREE.MeshStandardMaterial({
-            color: 0xcccccc,
-            metalness: 0.5,
-            roughness: 0.9,
-          });
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
-      });
-    }
-  }, [scene]);
+  try {
+    const { scene } = useGLTF("/models/building.glb");
 
-  useFrame(() => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = scrollProgress * Math.PI * 1;
-    }
-  });
+    useEffect(() => {
+      if (scene) {
+        scene.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.material = new THREE.MeshStandardMaterial({
+              color: 0xcccccc,
+              metalness: 0.5,
+              roughness: 0.9,
+            });
+            child.castShadow = true;
+            child.receiveShadow = true;
+          }
+        });
+      }
+    }, [scene]);
 
-  return (
-    <group ref={groupRef}>
-      <primitive object={scene} scale={22} position={[0, -2, 0]} />
-    </group>
-  );
+    useFrame(() => {
+      if (groupRef.current) {
+        groupRef.current.rotation.y = scrollProgress * Math.PI * 1;
+      }
+    });
+
+    return (
+      <group ref={groupRef}>
+        <primitive object={scene} scale={22} position={[0, -2, 0]} />
+      </group>
+    );
+  } catch (error) {
+    console.warn("BuildingModel: Error loading 3D model", error);
+    return null;
+  }
 }
 
 useGLTF.preload("/models/building.glb");

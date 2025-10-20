@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowRight, Lightbulb, Code, Target } from "lucide-react";
 import Scene3D from "../ui/Scene3D";
+import ErrorBoundary from "../ui/ErrorBoundary";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,7 +130,9 @@ export default function About() {
           className="hidden md:block lg:col-span-1 opacity-50"
           style={{ height: "1600px" }}
         >
-          <Scene3D scrollProgress={scrollProgress} />
+          <ErrorBoundary>
+            <Scene3D scrollProgress={scrollProgress} />
+          </ErrorBoundary>
         </div>
         {/* Scrolling Content - Right Side (2 columns) */}
         <div
