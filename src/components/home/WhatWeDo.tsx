@@ -41,13 +41,13 @@ export default function WhatWeDo() {
   return (
     <section className="max-w-screen-4xl mx-auto bg-background py-10 text-foreground">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center items-center flex-col">
-          <h2 className="font-oswald text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight">
+        <div className="flex justify-start items-start flex-col">
+          <h2 className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
             What We Do
           </h2>
-          <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-white" />
+          <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
         </div>
-        <p className="max-w-3xl pl-4 mx-auto mt-4 text-neutral-800 text-base md:text-lg text-center">
+        <p className="max-w-3xl pl-4 mx-auto mt-4 text-neutral-800 text-base md:text-lg text-start">
           We craft digital experiences that empower businesses — from web and
           mobile solutions to brand identity and AI-driven innovations.
         </p>

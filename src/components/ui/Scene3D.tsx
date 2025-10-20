@@ -24,7 +24,7 @@ export default function Scene3D({ scrollProgress }: Scene3DProps) {
       gl={{ alpha: true, antialias: true }}
     >
       <Suspense fallback={null}>
-        <PerspectiveCamera makeDefault position={[0, 10, 50]} fov={70} />
+        <PerspectiveCamera makeDefault position={[0, 5, 18]} fov={80} />
         <ambientLight intensity={0.5} />
         <directionalLight
           position={[10, 10, 5]}

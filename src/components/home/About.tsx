@@ -118,7 +118,7 @@ export default function About() {
     >
       {/* Sticky Title - Left Side */}
       <div className="flex justify-start items-start flex-col">
-        <h2 className="font-oswald text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight">
+        <h2 className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
           OUR VISION
         </h2>
         <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
@@ -126,7 +126,7 @@ export default function About() {
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-center">
           {/* 3D Building Background - Full Height Canvas */}
           <div
-            className="hidden md:block lg:col-span-1 pointer-events-none opacity-40 z-0"
+            className="hidden md:block lg:col-span-1 opacity-15"
             style={{ height: "1600px" }}
           >
             <Scene3D scrollProgress={scrollProgress} />
