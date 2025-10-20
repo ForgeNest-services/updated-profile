@@ -94,7 +94,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-oswald text-foreground text-sm lg:text-base xl:text-lg capitalize relative group"
+                  className="font-oswald text-foreground text-sm lg:text-base xl:text-lg capitalize relative group font-semibold"
                 >
                   {link.label}
                   <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-foreground group-hover:w-full transition-all duration-300" />

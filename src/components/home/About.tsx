@@ -114,7 +114,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="bg-background text-foreground py-20 md:py-32 overflow-hidden w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4"
+      className="bg-background text-foreground overflow-hidden w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4"
     >
       {/* Sticky Title - Left Side */}
       <div className="flex justify-start items-start flex-col">
