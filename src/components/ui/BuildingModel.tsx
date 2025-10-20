@@ -37,7 +37,7 @@ export default function BuildingModel({ scrollProgress }: BuildingModelProps) {
 
   return (
     <group ref={groupRef}>
-      <primitive object={scene} scale={10} position={[0, -6, 0]} />
+      <primitive object={scene} scale={19} position={[0, -6, 0]} />
     </group>
   );
 }

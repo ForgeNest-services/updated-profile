@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
 import "./globals.css";
-import { BarbaWrapper, Navbar } from "@/components/commons";
+import { BarbaWrapper, Navbar, SmoothScroll } from "@/components/commons";
 
 
 
@@ -25,9 +25,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${oswald.variable} font-sans antialiased`}>
         <Navbar />
+        <SmoothScroll>
         <BarbaWrapper>
           {children}
         </BarbaWrapper>
+        </SmoothScroll>
       </body>
     </html>
   );

@@ -34,7 +34,7 @@ export default function About() {
         },
       });
 
-      const validCards = cardsRef.current.filter(el => el !== null);
+      const validCards = cardsRef.current.filter((el) => el !== null);
       if (validCards.length > 0) {
         gsap.fromTo(
           validCards,
@@ -58,7 +58,7 @@ export default function About() {
         );
       }
 
-      const validStats = statsRef.current.filter(el => el !== null);
+      const validStats = statsRef.current.filter((el) => el !== null);
       if (validStats.length > 0) {
         ScrollTrigger.create({
           trigger: validStats[0],
@@ -71,9 +71,12 @@ export default function About() {
                 duration: 2,
                 ease: "power2.out",
                 onUpdate: () => {
-                  setStats(prev => {
+                  setStats((prev) => {
                     const newStats = [...prev];
-                    newStats[index] = { ...newStats[index], number: Math.floor(obj.value) };
+                    newStats[index] = {
+                      ...newStats[index],
+                      number: Math.floor(obj.value),
+                    };
                     return newStats;
                   });
                 },
@@ -91,52 +94,56 @@ export default function About() {
     {
       icon: <Lightbulb className="w-8 h-8" />,
       title: "Strategic Vision",
-      description: "We transform your ideas into comprehensive digital strategies that drive growth and innovation.",
+      description:
+        "We transform your ideas into comprehensive digital strategies that drive growth and innovation.",
     },
     {
       icon: <Code className="w-8 h-8" />,
       title: "Expert Development",
-      description: "Cutting-edge web and mobile solutions built with modern technologies and best practices.",
+      description:
+        "Cutting-edge web and mobile solutions built with modern technologies and best practices.",
     },
     {
       icon: <Target className="w-8 h-8" />,
       title: "Result-Driven",
-      description: "Every project is crafted with precision, focusing on measurable outcomes and business impact.",
+      description:
+        "Every project is crafted with precision, focusing on measurable outcomes and business impact.",
     },
   ];
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-background text-foreground py-20 md:py-32 overflow-hidden"
+      className="bg-background text-foreground py-20 md:py-32 overflow-hidden w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8"
     >
-      {/* 3D Building Background - Full Height Canvas */}
-      <div className="absolute inset-0 pointer-events-none opacity-15 z-0" style={{ minHeight: '1200px' }}>
-        <Scene3D scrollProgress={scrollProgress} />
+      {/* Sticky Title - Left Side */}
+      <div className="flex justify-start items-start flex-col">
+        <h2 className="font-oswald text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight">
+          OUR VISION
+        </h2>
+        <div className="mt-6 w-60 h-1 bg-foreground" />
       </div>
-
-      <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="">
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-16">
-          {/* Sticky Title - Left Side */}
-          <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-32">
-              <h2 className="font-oswald text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight">
-                OUR
-                <br />
-                VISION
-              </h2>
-              <div className="mt-6 w-20 h-1 bg-foreground" />
-            </div>
+          {/* 3D Building Background - Full Height Canvas */}
+          <div
+            className="lg:col-span-1 pointer-events-none opacity-15 z-0"
+            style={{ minHeight: "1200px" }}
+          >
+            <Scene3D scrollProgress={scrollProgress} />
           </div>
-
           {/* Scrolling Content - Right Side (2 columns) */}
-          <div ref={contentRef} className="lg:col-span-2 space-y-16 md:space-y-24">
+          <div
+            ref={contentRef}
+            className="lg:col-span-2 space-y-16 md:space-y-24"
+          >
             {/* Introduction */}
             <div className="space-y-4">
               <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed">
-                Forgenest is where innovation meets execution. We are a collective of
-                designers, developers, and strategists dedicated to building digital
-                experiences that inspire growth and transformation.
+                Forgenest is where innovation meets execution. We are a
+                collective of designers, developers, and strategists dedicated
+                to building digital experiences that inspire growth and
+                transformation.
               </p>
             </div>
 
@@ -146,9 +153,9 @@ export default function About() {
                 Who We Are
               </h3>
               <p className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed">
-                Our nest nurtures ideas from conception to reality. We blend technology,
-                creativity, and strategy to forge digital experiences that inspire growth
-                and imagination.
+                Our nest nurtures ideas from conception to reality. We blend
+                technology, creativity, and strategy to forge digital
+                experiences that inspire growth and imagination.
               </p>
             </div>
 
@@ -203,10 +210,11 @@ export default function About() {
                 Our Approach
               </h3>
               <p className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed">
-                We believe in the power of collaboration and iteration. Every project
-                begins with understanding your vision, followed by strategic planning,
-                meticulous execution, and continuous refinement. We don't just build
-                products—we forge lasting partnerships.
+                We believe in the power of collaboration and iteration. Every
+                project begins with understanding your vision, followed by
+                strategic planning, meticulous execution, and continuous
+                refinement. We don't just build products—we forge lasting
+                partnerships.
               </p>
               <Link
                 href="/about"
