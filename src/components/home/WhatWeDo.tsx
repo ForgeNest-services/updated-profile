@@ -39,15 +39,15 @@ export default function WhatWeDo() {
   ));
 
   return (
-    <section className="max-w-screen-4xl mx-auto bg-foreground py-10 text-white">
+    <section className="max-w-screen-4xl mx-auto bg-background py-10 text-foreground">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-       <div className="flex justify-center items-center flex-col">
-       <h2 className="font-oswald text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight">
-          What We Do
-        </h2>
-        <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-white" />
-       </div>
-        <p className="max-w-3xl pl-4 mx-auto mt-4 text-neutral-300 dark:text-neutral-400 text-base md:text-lg text-center">
+        <div className="flex justify-center items-center flex-col">
+          <h2 className="font-oswald text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight">
+            What We Do
+          </h2>
+          <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-white" />
+        </div>
+        <p className="max-w-3xl pl-4 mx-auto mt-4 text-neutral-800 text-base md:text-lg text-center">
           We craft digital experiences that empower businesses — from web and
           mobile solutions to brand identity and AI-driven innovations.
         </p>
@@ -103,6 +103,18 @@ const data = [
         title="AI & Automation"
         description="Integrate AI tools, automate workflows, and use data-driven insights to improve productivity, customer experience, and decision-making."
         image="https://assets.aceternity.com/ai.png"
+      />
+    ),
+  },
+  {
+    category: "Motion Design",
+    title: "Bring ideas to life with motion.",
+    src: "/images/background.svg",
+    content: (
+      <ServiceContent
+        title="Motion Design & Animation"
+        description="We create engaging motion graphics, explainer videos, and product animations that elevate your brand and captivate your audience — blending creativity with storytelling."
+        image="/images/background.svg"
       />
     ),
   },
