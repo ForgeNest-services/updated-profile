@@ -31,7 +31,7 @@ export default function BuildingModel({ scrollProgress }: BuildingModelProps) {
 
   useFrame(() => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = scrollProgress * Math.PI * 2;
+      groupRef.current.rotation.y = scrollProgress * Math.PI * 1;
     }
   });
 
