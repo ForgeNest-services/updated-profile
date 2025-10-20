@@ -19,7 +19,7 @@ export default function BuildingModel({ scrollProgress }: BuildingModelProps) {
         if (child instanceof THREE.Mesh) {
           child.material = new THREE.MeshStandardMaterial({
             color: 0xcccccc,
-            metalness: 20,
+            metalness: 0.5,
             roughness: 0.9,
           });
           child.castShadow = true;
@@ -37,7 +37,7 @@ export default function BuildingModel({ scrollProgress }: BuildingModelProps) {
 
   return (
     <group ref={groupRef}>
-      <primitive object={scene} scale={32} position={[0, -2, 0]} />
+      <primitive object={scene} scale={22} position={[0, -2, 0]} />
     </group>
   );
 }

@@ -6,7 +6,7 @@ import { useLottie } from "lottie-react";
 import heroWalkAnimation from "@/lib/animations/hero.json";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { avatars } from "@/lib/constants/avatars";
-import { SpinningText } from "@/components/ui/spinning-text"
+import { SpinningText } from "@/components/ui/spinning-text";
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -276,14 +276,14 @@ export default function Hero() {
           >
             {/* Fading border right */}
             <div className="absolute top-0 right-0 h-full w-1 bg-gradient-to-b from-transparent via-white to-transparent opacity-50" />
-              <p
-                ref={subtitleTextRef}
-                className="text-sm md:text-base lg:text-lg font-oswald font-light text-justify"
-              >
-                A space where ideas are nurtured, designed, and brought to life.
-                We blend technology, creativity, and strategy to forge digital
-                experiences that inspire growth and imagination.
-              </p>
+            <p
+              ref={subtitleTextRef}
+              className="text-sm md:text-base lg:text-lg font-oswald font-light text-justify"
+            >
+              A space where ideas are nurtured, designed, and brought to life.
+              We blend technology, creativity, and strategy to forge digital
+              experiences that inspire growth and imagination.
+            </p>
           </div>
           <div className="relative">
             <div className="*:data-[slot=avatar]:ring-background flex justify-center items-center md:justify-start pt-10 -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar-image]:grayscale-0">
@@ -295,7 +295,7 @@ export default function Hero() {
               ))}
             </div>
             <div className="hidden lg:block absolute -bottom-25 left-10">
-            <SpinningText>Forgenest Services Pvt. Ltd.</SpinningText>
+              <SpinningText>Forgenest Services Pvt. Ltd.</SpinningText>
             </div>
           </div>
         </div>

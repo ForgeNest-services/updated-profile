@@ -18,13 +18,13 @@ interface Scene3DProps {
 
 export default function Scene3D({ scrollProgress }: Scene3DProps) {
   return (
-    <Canvas 
-      shadows 
-      style={{ height: '1600px' }}
+    <Canvas
+      shadows
+      style={{ height: "1600px" }}
       gl={{ alpha: true, antialias: true }}
     >
       <Suspense fallback={null}>
-        <PerspectiveCamera makeDefault position={[0, 5, 18]} fov={80} />
+        <PerspectiveCamera makeDefault position={[0, 0, 15]} fov={110} />
         <ambientLight intensity={0.5} />
         <directionalLight
           position={[10, 10, 5]}
@@ -36,7 +36,7 @@ export default function Scene3D({ scrollProgress }: Scene3DProps) {
         <spotLight position={[-10, 10, -5]} intensity={0.3} />
         <BuildingModel scrollProgress={scrollProgress} />
         <Environment preset="city" />
-        <OrbitControls 
+        <OrbitControls
           enablePan={false}
           enableZoom={false}
           enableRotate={true}

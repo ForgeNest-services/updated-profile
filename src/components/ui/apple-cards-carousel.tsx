@@ -74,12 +74,12 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
         onUpdate: (self) => {
           const progress = self.progress;
           const currentScroll = progress * maxScroll;
-          
+
           // Update button states
           setCanScrollLeft(currentScroll > 0);
           setCanScrollRight(currentScroll < maxScroll);
-        }
-      }
+        },
+      },
     });
 
     return () => {
@@ -99,9 +99,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     if (carouselRef.current) {
       const cardWidth = isMobile() ? 230 : 384;
       const gap = isMobile() ? 16 : 16;
-      carouselRef.current.scrollBy({ 
-        left: -(cardWidth + gap), 
-        behavior: "smooth" 
+      carouselRef.current.scrollBy({
+        left: -(cardWidth + gap),
+        behavior: "smooth",
       });
     }
   };
@@ -110,9 +110,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     if (carouselRef.current) {
       const cardWidth = isMobile() ? 230 : 384;
       const gap = isMobile() ? 16 : 16;
-      carouselRef.current.scrollBy({ 
-        left: cardWidth + gap, 
-        behavior: "smooth" 
+      carouselRef.current.scrollBy({
+        left: cardWidth + gap,
+        behavior: "smooth",
       });
     }
   };
@@ -137,7 +137,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           <div
             className={cn(
               "flex flex-row justify-start gap-4 pl-4",
-              "will-change-transform", // Optimize for animations
+              "will-change-transform" // Optimize for animations
             )}
             ref={containerRef}
           >
@@ -204,7 +204,9 @@ export const Card = ({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  useOutsideClick(containerRef as React.RefObject<HTMLDivElement>, () => handleClose());
+  useOutsideClick(containerRef as React.RefObject<HTMLDivElement>, () =>
+    handleClose()
+  );
 
   const handleOpen = () => {
     setOpen(true);
@@ -301,7 +303,7 @@ export const BlurImage = ({
       className={cn(
         "h-full w-full transition duration-300",
         isLoading ? "blur-sm" : "blur-0",
-        className,
+        className
       )}
       onLoad={() => setLoading(false)}
       src={src as string}

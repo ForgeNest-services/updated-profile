@@ -107,18 +107,6 @@ const data = [
     ),
   },
   {
-    category: "Motion Design",
-    title: "Bring ideas to life with motion.",
-    src: "/images/background.svg",
-    content: (
-      <ServiceContent
-        title="Motion Design & Animation"
-        description="We create engaging motion graphics, explainer videos, and product animations that elevate your brand and captivate your audience — blending creativity with storytelling."
-        image="/images/background.svg"
-      />
-    ),
-  },
-  {
     category: "Digital Marketing",
     title: "Grow your presence, reach your audience.",
     src: "https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=2000&auto=format&fit=crop",
@@ -127,6 +115,18 @@ const data = [
         title="Digital Marketing"
         description="We help you get discovered — through SEO, social media strategy, and data-driven campaigns that deliver measurable results."
         image="https://assets.aceternity.com/marketing.png"
+      />
+    ),
+  },
+  {
+    category: "Motion Design",
+    title: "Bring ideas to life with motion.",
+    src: "/images/background.svg",
+    content: (
+      <ServiceContent
+        title="Motion Design & Animation"
+        description="We create engaging motion graphics, explainer videos, and product animations that elevate your brand and captivate your audience — blending creativity with storytelling."
+        image="/images/background.svg"
       />
     ),
   },
