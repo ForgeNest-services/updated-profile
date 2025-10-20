@@ -17,6 +17,7 @@ export default function OurProcess() {
   const sectionRef = useRef<HTMLElement>(null);
   const snakeRef = useRef<SVGPathElement>(null);
   const stepsRef = useRef<HTMLDivElement[]>([]);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const processSteps = [
     {
@@ -65,6 +66,36 @@ export default function OurProcess() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Parallax background and overlay opacity
+      if (sectionRef.current) {
+        gsap.to(sectionRef.current, {
+          backgroundPositionY: "30%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+      }
+
+      if (overlayRef.current) {
+        gsap.fromTo(
+          overlayRef.current,
+          { opacity: 0.6 },
+          {
+            opacity: 0.3,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          }
+        );
+      }
       // Animate snake path drawing
       if (snakeRef.current) {
         const pathLength = snakeRef.current.getTotalLength();
@@ -118,16 +149,27 @@ export default function OurProcess() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-background text-foreground px-4 sm:px-6 lg:px-8"
+      className="relative w-full px-4 sm:px-6 lg:px-8 overflow-hidden"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2000&auto=format&fit=crop')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
     >
-      <div className="max-w-screen-2xl mx-auto">
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-none"
+      />
+      <div className="relative z-10 max-w-screen-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight mb-4">
+          <h2 className="text-2xl text-background md:text-4xl lg:text-6xl font-oswald font-normal tracking-tighter leading-tight mb-4">
             Our Process
           </h2>
-          <div className="w-20 lg:w-40 h-1 bg-foreground mx-auto mb-6" />
-          <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
+          <div className="w-20 lg:w-40 h-1 bg-background mx-auto mb-6" />
+          <p className="text-lg md:text-xl text-background/80 max-w-3xl mx-auto">
             From concept to completion, we follow a proven methodology that
             ensures exceptional results and seamless collaboration.
           </p>
@@ -196,7 +238,7 @@ export default function OurProcess() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p className="text-lg text-foreground/80 mb-6">
+          <p className="text-lg text-background/80 mb-6">
             Ready to start your project?
           </p>
           <button className="bg-foreground text-background px-8 py-4 rounded-full font-oswald text-lg uppercase hover:opacity-90 transition-opacity duration-300">
