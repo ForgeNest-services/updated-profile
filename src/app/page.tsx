@@ -4,6 +4,8 @@ import {
   WhatWeDo,
   OurProcess,
   Expertise,
+  Newsletter,
+  Footer,
 } from "@/components/home";
 
 export default function Home() {
@@ -14,6 +16,8 @@ export default function Home() {
       <WhatWeDo />
       <OurProcess />
       <Expertise />
+      <Newsletter />
+      <Footer />
     </main>
   );
 }
