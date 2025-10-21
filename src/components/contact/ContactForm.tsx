@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Loader2 } from "lucide-react";
 import {
   Field,
   FieldContent,
@@ -243,7 +244,14 @@ export default function ContactForm() {
                   className="bg-foreground rounded-3xl p-6 text-xs md:text-base"
                   disabled={isPending}
                 >
-                  {isPending ? "Submitting..." : "Submit request"}
+                  {isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit request"
+                  )}
                 </Button>
               </div>
             </FieldGroup>
