@@ -9,42 +9,36 @@ gsap.registerPlugin(ScrollTrigger);
 
 const timelineData = [
   {
-    year: "2019",
     title: "The Beginning",
     description:
       "Forgenest was founded with a vision to revolutionize digital experiences through innovative design and cutting-edge technology.",
     milestone: "Company Founded",
   },
   {
-    year: "2020",
     title: "First Breakthrough",
     description:
       "We delivered our first major project, establishing our reputation for quality and innovation in the digital space.",
     milestone: "First Major Client",
   },
   {
-    year: "2021",
     title: "Expansion",
     description:
       "Expanded our team and services, adding AI integration and cloud solutions to our portfolio.",
     milestone: "Team Growth",
   },
   {
-    year: "2022",
     title: "Recognition",
     description:
       "Received industry recognition for our innovative approach to digital transformation and client satisfaction.",
     milestone: "Award Winner",
   },
   {
-    year: "2023",
     title: "Global Reach",
     description:
       "Established partnerships worldwide, serving clients across multiple continents with our remote-first approach.",
     milestone: "Global Expansion",
   },
   {
-    year: "2024",
     title: "Future Vision",
     description:
       "Continuing to push boundaries with emerging technologies like AI, AR/VR, and sustainable digital solutions.",
@@ -157,9 +151,6 @@ export default function AboutUsStory() {
                 >
                   <div className="bg-background border border-foreground/10 rounded-2xl p-6 md:p-8 hover:border-foreground/20 transition-all duration-300">
                     <div className="flex items-center gap-4 mb-4">
-                      <span className="text-2xl md:text-3xl font-bold text-foreground">
-                        {item.year}
-                      </span>
                       <span className="px-3 py-1 bg-foreground/10 text-foreground text-sm font-medium rounded-full">
                         {item.milestone}
                       </span>
