@@ -5,7 +5,6 @@ import {
   OurProcess,
   Expertise,
   Newsletter,
-  Footer,
 } from "@/components/home";
 import BarbaWrapper from "@/components/commons/Barba";
 
@@ -19,7 +18,6 @@ export default function Home() {
         <OurProcess />
         <Expertise />
         <Newsletter />
-        <Footer />
       </main>
     </BarbaWrapper>
   );

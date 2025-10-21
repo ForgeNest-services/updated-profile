@@ -126,7 +126,7 @@ export default function About() {
         </TitleAnimation>
         <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
       </div>
-      <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-center">
+      <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-start">
         {/* 3D Building Background - Full Height Canvas */}
         <div
           className="hidden md:block lg:col-span-1 opacity-50"
@@ -139,12 +139,12 @@ export default function About() {
         {/* Scrolling Content - Right Side (2 columns) */}
         <div
           ref={contentRef}
-          className="lg:col-span-2 space-y-16 md:space-y-24 text-justify"
+          className="lg:col-span-2 space-y-6 md:space-y-10 text-justify pt-0 lg:pt-20"
         >
           {/* Introduction */}
           <div className="space-y-4">
             <TextAnimation
-              className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed"
+              className="text-sm md:text-xl text-foreground leading-relaxed"
               animationType="fadeUp"
               delay={0.2}
             >
@@ -153,14 +153,9 @@ export default function About() {
               digital experiences that inspire growth and transformation.
             </TextAnimation>
           </div>
-
-          {/* Who We Are */}
           <div className="space-y-6">
-            <h3 className="font-oswald text-3xl md:text-4xl lg:text-5xl font-bold uppercase">
-              Who We Are
-            </h3>
             <TextAnimation
-              className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed"
+              className="text-sm md:text-xl text-foreground leading-relaxed"
               animationType="fadeUp"
               delay={0.3}
             >
@@ -170,38 +165,10 @@ export default function About() {
             </TextAnimation>
           </div>
 
-          {/* What We Do */}
-          <div className="space-y-8">
-            <h3 className="font-oswald text-3xl md:text-4xl lg:text-5xl font-bold uppercase">
-              What We Do
-            </h3>
-            <div className="space-y-8">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  ref={(el) => {
-                    if (el) cardsRef.current[index] = el;
-                  }}
-                  className="space-y-3"
-                >
-                  <h4 className="font-oswald text-xl md:text-2xl lg:text-3xl font-semibold">
-                    {service.title}
-                  </h4>
-                  <p className="text-foreground/70 text-base md:text-lg leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Our Approach */}
           <div className="space-y-6">
-            <h3 className="font-oswald text-3xl md:text-4xl lg:text-5xl font-bold uppercase">
-              Our Approach
-            </h3>
             <TextAnimation
-              className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed"
+              className="text-sm md:text-xl text-foreground leading-relaxed"
               animationType="fadeUp"
               delay={0.4}
             >
@@ -212,7 +179,7 @@ export default function About() {
               partnerships.
             </TextAnimation>
             <Link
-              href="/about"
+              href="/about-us"
               className="inline-flex items-center gap-3 bg-foreground text-background px-6 md:px-8 py-3 md:py-4 rounded-full font-oswald text-sm md:text-base uppercase hover:opacity-90 transition-opacity duration-300 group mt-4"
             >
               Learn More About Us
