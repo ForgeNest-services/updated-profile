@@ -87,10 +87,10 @@ export default function Footer() {
           <div className="lg:col-span-4 space-y-6">
             {/* Logo */}
             <Link href="/" className="inline-block">
-              <div className="relative w-48 h-16 bg-white/10 rounded-lg flex items-center justify-center">
+              <div className="relative w-48 h-16 flex items-center justify-center">
                 {/* Placeholder for logo - Replace with your actual logo */}
                 <Image
-                  src="/logo-white.png"
+                  src="/images/logo-white.png"
                   alt="Forgenest Services"
                   width={180}
                   height={60}
