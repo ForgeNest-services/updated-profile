@@ -103,7 +103,7 @@ export default function Expertise() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-background text-foreground py-24 md:py-40 overflow-hidden"
+      className="relative bg-background text-foreground py-20 md:py-32 overflow-hidden"
     >
       {/* Animated background grid */}
       <div className="absolute inset-0 opacity-5">
@@ -122,14 +122,14 @@ export default function Expertise() {
         />
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div ref={titleRef} className="mb-20 text-center">
-          <h2 className="main-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">
+        <div ref={titleRef} className="text-center space-y-4">
+          <h2 className="main-heading text-2xl md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight text-center">
             Our Expertise
           </h2>
           <div className="decorative-line h-1 w-32 bg-foreground mx-auto mb-8 rounded-full" />
-          <p className="sub-heading max-w-3xl mx-auto text-foreground opacity-70 text-lg md:text-xl leading-relaxed">
+          <p className="sub-heading max-w-3xl pl-4 mx-auto mt-4 text-neutral-800 text-base md:text-lg text-start">
             Delivering excellence across multiple domains with cutting-edge
             technology and innovative solutions
           </p>
@@ -164,19 +164,32 @@ export default function Expertise() {
               320: {
                 slidesPerView: 1,
                 spaceBetween: 20,
+                centeredSlides: true,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 25,
+                centeredSlides: true,
               },
               768: {
                 slidesPerView: 3,
                 spaceBetween: 30,
+                centeredSlides: true,
               },
               1024: {
                 slidesPerView: 3,
                 spaceBetween: 40,
+                centeredSlides: true,
+              },
+              1280: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+                centeredSlides: true,
               },
             }}
           >
             {expertiseData.map((item, index) => (
-              <SwiperSlide key={index} className="pb-16">
+              <SwiperSlide key={index} className="">
                 <div className="group relative bg-background rounded-3xl p-8 border-2 border-foreground border-opacity-20 hover:border-opacity-40 transition-all duration-500 h-[420px] flex flex-col">
                   {/* Glowing effect on hover */}
                   <div className="absolute inset-0 rounded-3xl bg-foreground opacity-0 group-hover:opacity-5 transition-opacity duration-500 blur-xl" />
@@ -185,7 +198,7 @@ export default function Expertise() {
                   <div className="relative flex-1 flex flex-col">
                     {/* Title with underline */}
                     <div className="mb-6">
-                      <h3 className="text-3xl font-bold mb-3 text-foreground transition-all duration-300">
+                      <h3 className="text-3xl font-normal mb-3 text-foreground transition-all duration-300">
                         {item.title}
                       </h3>
                       <div className="h-1 w-16 bg-foreground rounded-full group-hover:w-24 transition-all duration-300" />
@@ -253,6 +266,19 @@ export default function Expertise() {
         .expertise-swiper .swiper-slide {
           width: 380px;
           max-width: 90vw;
+        }
+
+        @media (max-width: 640px) {
+          .expertise-swiper .swiper-slide {
+            width: 320px;
+            max-width: 85vw;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 768px) {
+          .expertise-swiper .swiper-slide {
+            width: 350px;
+          }
         }
 
         .expertise-swiper .swiper-pagination-bullet {
