@@ -24,55 +24,75 @@ export default function ContactForm() {
   const [services, setServices] = useState<Option[]>([]);
 
   return (
-    <div className="w-full max-w-3xl mt-6 md:mt-10">
+    <div className="w-full max-w-3xl">
       <div className="rounded-2xl border border-foreground/20 bg-background p-6 sm:p-8 shadow-xs">
         <FieldSet className="w-full">
           <FieldLegend className="sr-only">Request a quote</FieldLegend>
           <FieldGroup className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <Field orientation="responsive">
-                <FieldLabel>Full name</FieldLabel>
+            <div className="space-y-6">
+              <Field>
+                <FieldLabel className="text-xs md:text-base text-foreground leading-relaxed">
+                  Full name
+                </FieldLabel>
                 <FieldContent>
-                  <Input placeholder="Jane Doe" required aria-required="true" />
+                  <Input
+                    placeholder="Jane Doe"
+                    required
+                    aria-required="true"
+                    className="text-xs md:text-base text-foreground leading-relaxed"
+                  />
                 </FieldContent>
               </Field>
-              <Field orientation="responsive">
-                <FieldLabel>Email</FieldLabel>
+              <Field>
+                <FieldLabel className="text-xs md:text-base text-foreground leading-relaxed">
+                  Email
+                </FieldLabel>
                 <FieldContent>
                   <Input
                     type="email"
                     placeholder="jane@company.com"
                     required
                     aria-required="true"
+                    className="text-xs md:text-base text-foreground leading-relaxed"
                   />
                 </FieldContent>
               </Field>
-              <Field orientation="responsive">
-                <FieldLabel>Company</FieldLabel>
+              <Field>
+                <FieldLabel className="text-xs md:text-base text-foreground leading-relaxed">
+                  Company
+                </FieldLabel>
                 <FieldContent>
-                  <Input placeholder="Acme Inc." />
+                  <Input
+                    placeholder="Acme Inc."
+                    className="text-xs md:text-base text-foreground leading-relaxed"
+                  />
                 </FieldContent>
               </Field>
-              <Field orientation="responsive" className="md:col-span-2">
-                <FieldLabel>Services needed</FieldLabel>
+              <Field>
+                <FieldLabel className="text-xs md:text-base text-foreground leading-relaxed">
+                  Services needed
+                </FieldLabel>
                 <FieldContent>
                   <MultipleSelector
                     value={services}
                     onChange={setServices}
                     defaultOptions={serviceOptions}
                     placeholder="Select one or more"
-                    className="bg-transparent"
+                    className="bg-transparent text-xs md:text-base text-foreground leading-relaxed"
                   />
                 </FieldContent>
               </Field>
-              <Field orientation="responsive" className="md:col-span-2">
-                <FieldLabel>Description</FieldLabel>
+              <Field>
+                <FieldLabel className="text-xs md:text-base text-foreground leading-relaxed">
+                  Description
+                </FieldLabel>
                 <FieldContent>
                   <Textarea
                     placeholder="Tell us about your goals, scope, timeline, and any relevant links."
                     rows={6}
+                    className="text-xs md:text-base text-foreground leading-relaxed"
                   />
-                  <FieldDescription>
+                  <FieldDescription className="text-xs md:text-base text-foreground leading-relaxed">
                     Share as much context as you can.
                   </FieldDescription>
                 </FieldContent>
@@ -83,7 +103,7 @@ export default function ContactForm() {
                 type="submit"
                 variant="default"
                 color="primary"
-                className="bg-foreground rounded-3xl p-4"
+                className="bg-foreground rounded-3xl p-6 text-xs md:text-base"
               >
                 Submit request
               </Button>

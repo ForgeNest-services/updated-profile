@@ -156,7 +156,7 @@ export default function AboutUsValues() {
             delay={0.4}
           >
             <a
-              href="/contact"
+              href="/contact-us"
               className="inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-full font-oswald text-base uppercase hover:opacity-90 transition-opacity duration-300"
             >
               Get In Touch
