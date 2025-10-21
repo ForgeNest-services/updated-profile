@@ -195,26 +195,6 @@ export default function About() {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 py-8">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                ref={(el) => {
-                  if (el) statsRef.current[index] = el;
-                }}
-                className="space-y-2"
-              >
-                <div className="font-oswald text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
-                  {stat.number}+
-                </div>
-                <div className="font-oswald text-xs md:text-sm text-foreground/60">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
           {/* Our Approach */}
           <div className="space-y-6">
             <h3 className="font-oswald text-3xl md:text-4xl lg:text-5xl font-bold uppercase">

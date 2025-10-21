@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,7 +18,14 @@ export default function Expertise() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const swiperContainerRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement[]>([]);
+  const hasAnimatedRef = useRef(false);
 
+  const [stats, setStats] = useState([
+    { number: 0, target: 50, label: "Projects Delivered" },
+    { number: 0, target: 15, label: "Happy Clients" },
+    { number: 0, target: 5, label: "Years Experience" },
+  ]);
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Title animation
@@ -97,6 +104,37 @@ export default function Expertise() {
           }
         );
       }
+
+      // Stats animation
+      const validStats = statsRef.current.filter((el) => el !== null);
+      if (validStats.length > 0 && !hasAnimatedRef.current) {
+        ScrollTrigger.create({
+          trigger: validStats[0],
+          start: "top 80%",
+          once: true,
+          onEnter: () => {
+            hasAnimatedRef.current = true;
+            stats.forEach((stat, index) => {
+              const obj = { value: 0 };
+              gsap.to(obj, {
+                value: stat.target,
+                duration: 2,
+                ease: "power2.out",
+                onUpdate: () => {
+                  setStats((prev) => {
+                    const newStats = [...prev];
+                    newStats[index] = {
+                      ...newStats[index],
+                      number: Math.floor(obj.value),
+                    };
+                    return newStats;
+                  });
+                },
+              });
+            });
+          },
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -128,12 +166,12 @@ export default function Expertise() {
         {/* Header */}
         <div ref={titleRef} className="text-center space-y-4">
           <TitleAnimation className="main-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-oswald font-normal text-foreground tracking-tighter leading-tight text-center">
-            Our Expertise
+            Tech Stack & Expertise
           </TitleAnimation>
           <div className="decorative-line h-1 w-20 sm:w-24 md:w-28 lg:w-32 bg-foreground mx-auto rounded-full" />
           <TextAnimation className="sub-heading max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto text-neutral-800 text-sm sm:text-base md:text-lg lg:text-xl text-center px-4">
-            Delivering excellence across multiple domains with cutting-edge
-            technology and innovative solutions
+            Technologies and tools we master to build exceptional digital
+            experiences
           </TextAnimation>
         </div>
 
@@ -198,11 +236,25 @@ export default function Expertise() {
 
                   {/* Card content */}
                   <div className="relative flex-1 flex flex-col">
-                    {/* Title with underline */}
+                    {/* Category with proficiency indicator */}
                     <div className="mb-4 sm:mb-6">
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-normal mb-2 sm:mb-3 text-foreground transition-all duration-300">
-                        {item.title}
-                      </h3>
+                      <div className="flex items-center justify-between mb-2 sm:mb-3">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-normal text-foreground transition-all duration-300">
+                          {item.category}
+                        </h3>
+                        <div className="flex items-center gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <div
+                              key={i}
+                              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                i < item.proficiency
+                                  ? "bg-foreground"
+                                  : "bg-foreground/20"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
                       <div className="h-1 w-12 sm:w-16 bg-foreground rounded-full group-hover:w-16 sm:group-hover:w-24 transition-all duration-300" />
                     </div>
 
@@ -211,9 +263,9 @@ export default function Expertise() {
                       {item.description}
                     </p>
 
-                    {/* Tech stack with modern pills */}
+                    {/* Technologies with modern pills */}
                     <div className="flex flex-wrap gap-2 mt-auto">
-                      {item.icons.map((tech, techIndex) => (
+                      {item.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
                           className="relative px-2 sm:px-3 md:px-4 py-1 sm:py-2 text-xs sm:text-sm font-medium text-foreground rounded-full border border-foreground border-opacity-30 group-hover:border-opacity-50 transition-all duration-300 overflow-hidden"
@@ -235,34 +287,24 @@ export default function Expertise() {
           </Swiper>
         </div>
 
-        {/* Bottom stats or CTA section */}
+        {/* Stats */}
         <div className="mt-16 sm:mt-20 md:mt-24 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-16">
-          <div className="text-center">
-            <TextAnimation className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
-              50+
-            </TextAnimation>
-            <TextAnimation className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
-              Projects Delivered
-            </TextAnimation>
-          </div>
-          <div className="hidden sm:block h-12 sm:h-16 w-px bg-foreground opacity-20" />
-          <div className="text-center">
-            <TextAnimation className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
-              98%
-            </TextAnimation>
-            <TextAnimation className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
-              Client Satisfaction
-            </TextAnimation>
-          </div>
-          <div className="hidden sm:block h-12 sm:h-16 w-px bg-foreground opacity-20" />
-          <div className="text-center">
-            <TextAnimation className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
-              24/7
-            </TextAnimation>
-            <TextAnimation className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
-              Support Available
-            </TextAnimation>
-          </div>
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              ref={(el) => {
+                if (el) statsRef.current[index] = el;
+              }}
+              className="text-center"
+            >
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
+                {stat.number}+
+              </div>
+              <div className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 

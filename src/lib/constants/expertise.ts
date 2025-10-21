@@ -1,60 +1,93 @@
-interface ExpertiseItem {
-  title: string;
+interface TechStackItem {
+  category: string;
   description: string;
-  icons: string[];
+  technologies: string[];
+  proficiency: number; // 1-5 scale
 }
 
-export const expertiseData: ExpertiseItem[] = [
+export const expertiseData: TechStackItem[] = [
   {
-    title: "Custom Software Solutions",
+    category: "Frontend Development",
     description:
-      "We design and develop scalable web and mobile applications tailored to your business goals — efficient, reliable, and built for growth.",
-    icons: ["Python", "Node.js", "Next.js", "MongoDB", "SQL"],
-  },
-  {
-    title: "Video Production & Editing",
-    description:
-      "From concept to post-production, we create visually engaging videos that tell your story with creativity and precision.",
-    icons: [
-      "Adobe Premiere Pro",
-      "After Effects",
-      "DaVinci Resolve",
-      "Final Cut Pro",
+      "Modern, responsive user interfaces built with cutting-edge frameworks and libraries.",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "GSAP",
+      "Three.js",
     ],
+    proficiency: 5,
   },
   {
-    title: "Motion Graphics & Animation",
+    category: "Backend Development",
     description:
-      "We bring ideas to life through smooth, modern motion graphics — perfect for brand promos, explainers, and digital ads.",
-    icons: ["Adobe After Effects", "Blender", "Cinema 4D"],
-  },
-  {
-    title: "Graphic Design & Branding",
-    description:
-      "Crafting designs that speak your brand's language — from logos and posters to complete visual identity systems.",
-    icons: ["Adobe Photoshop", "Illustrator", "Figma", "Canva"],
-  },
-  {
-    title: "Digital Transformation",
-    description:
-      "We help businesses evolve digitally with smart strategies, automation, and innovative technology integrations.",
-    icons: [
-      "AI Integration",
-      "Business Automation",
-      "Cloud Migration",
-      "Data Analytics",
+      "Scalable server-side solutions and APIs that power robust applications.",
+    technologies: [
+      "Node.js",
+      "Python",
+      "Express",
+      "FastAPI",
+      "PostgreSQL",
+      "MongoDB",
     ],
+    proficiency: 5,
   },
   {
-    title: "Cloud Solutions",
+    category: "Cloud & DevOps",
     description:
-      "Empowering your business with secure, scalable cloud infrastructure and seamless migration for maximum performance.",
-    icons: [
+      "Deployment, scaling, and infrastructure management for optimal performance.",
+    technologies: [
       "AWS",
-      "Microsoft Azure",
-      "Google Cloud Platform",
-      "DigitalOcean",
-      "DevOps",
+      "Docker",
+      "Kubernetes",
+      "CI/CD",
+      "Terraform",
+      "Nginx",
     ],
+    proficiency: 4,
+  },
+  {
+    category: "Design & Animation",
+    description:
+      "Visual storytelling through motion graphics, UI/UX design, and brand identity.",
+    technologies: [
+      "Figma",
+      "After Effects",
+      "Blender",
+      "Cinema 4D",
+      "Photoshop",
+      "Illustrator",
+    ],
+    proficiency: 4,
+  },
+  {
+    category: "AI & Machine Learning",
+    description:
+      "Intelligent solutions leveraging artificial intelligence and data science.",
+    technologies: [
+      "OpenAI API",
+      "TensorFlow",
+      "PyTorch",
+      "LangChain",
+      "Pandas",
+      "Scikit-learn",
+    ],
+    proficiency: 3,
+  },
+  {
+    category: "Mobile Development",
+    description:
+      "Cross-platform mobile applications with native performance and user experience.",
+    technologies: [
+      "React Native",
+      "Flutter",
+      "Swift",
+      "Kotlin",
+      "Expo",
+      "Firebase",
+    ],
+    proficiency: 4,
   },
 ];
