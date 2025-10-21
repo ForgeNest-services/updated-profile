@@ -9,7 +9,7 @@ import {
 
 export default function AboutUsPage() {
   return (
-    <BarbaWrapper namespace="about">
+    <BarbaWrapper namespace="about-us">
       <main className="bg-background text-foreground font-oswald max-w-screen-4xl mx-auto space-y-6">
         <AboutUsHero />
         <AboutUsStory />
