@@ -93,27 +93,6 @@ export default function About() {
     return () => ctx.revert();
   }, []);
 
-  const services = [
-    {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: "Strategic Vision",
-      description:
-        "We transform your ideas into comprehensive digital strategies that drive growth and innovation.",
-    },
-    {
-      icon: <Code className="w-8 h-8" />,
-      title: "Expert Development",
-      description:
-        "Cutting-edge web and mobile solutions built with modern technologies and best practices.",
-    },
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: "Result-Driven",
-      description:
-        "Every project is crafted with precision, focusing on measurable outcomes and business impact.",
-    },
-  ];
-
   return (
     <section
       ref={sectionRef}
@@ -128,10 +107,7 @@ export default function About() {
       </div>
       <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-start">
         {/* 3D Building Background - Full Height Canvas */}
-        <div
-          className="hidden md:block lg:col-span-1 opacity-50"
-          style={{ height: "1600px" }}
-        >
+        <div className="hidden md:block lg:col-span-1 opacity-50">
           <ErrorBoundary>
             <Scene3D scrollProgress={scrollProgress} />
           </ErrorBoundary>

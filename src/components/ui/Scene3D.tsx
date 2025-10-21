@@ -18,7 +18,7 @@ export default function Scene3D({ scrollProgress }: Scene3DProps) {
   const isDev = process.env.NODE_ENV === "development";
 
   return (
-    <div className="relative w-full" style={{ height: "1600px" }}>
+    <div className="relative w-full">
       {/* Loading overlay */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center z-10">
@@ -28,7 +28,7 @@ export default function Scene3D({ scrollProgress }: Scene3DProps) {
 
       <Canvas
         shadows
-        style={{ height: "1600px" }}
+        style={{ height: "1000px" }}
         gl={{
           alpha: true,
           antialias: true,
