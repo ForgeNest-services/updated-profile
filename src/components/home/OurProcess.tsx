@@ -10,6 +10,8 @@ import {
   Rocket,
   CheckCircle,
 } from "lucide-react";
+import TitleAnimation from "../ui/TitleAnimation";
+import TextAnimation from "../ui/TextAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -166,14 +168,14 @@ export default function OurProcess() {
         <div className="backdrop-blur-xl bg-white/10 py-10 rounded-3xl border space-y-6">
           {/* Header */}
           <div className="text-center space-y-4">
-            <h2 className="text-2xl text-background md:text-4xl lg:text-6xl font-oswald font-normal tracking-tighter leading-tight mb-4">
+            <TitleAnimation className="text-2xl text-background md:text-4xl lg:text-6xl font-oswald font-normal tracking-tighter leading-tight mb-4">
               Our Process
-            </h2>
+            </TitleAnimation>
             <div className="w-20 lg:w-40 h-1 bg-background mx-auto" />
-            <p className="text-sm md:text-xl text-neutral-300 max-w-3xl mx-auto px-2">
+            <TextAnimation className="text-sm md:text-xl text-neutral-300 max-w-3xl mx-auto px-2">
               From concept to completion, we follow a proven methodology that
               ensures exceptional results and seamless collaboration.
-            </p>
+            </TextAnimation>
           </div>
 
           {/* Process Steps */}
@@ -236,9 +238,9 @@ export default function OurProcess() {
 
           {/* Bottom CTA */}
           <div className="text-center mt-16">
-            <p className="text-lg text-background/80 mb-6">
+            <TextAnimation className="text-lg text-background/80 mb-6">
               Ready to start your project?
-            </p>
+            </TextAnimation>
             <button className="bg-foreground text-background px-8 py-4 rounded-full font-oswald text-lg uppercase hover:opacity-90 transition-opacity duration-300">
               Let's Begin
             </button>

@@ -9,6 +9,8 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { expertiseData } from "@/lib/constants/expertise";
+import TitleAnimation from "../ui/TitleAnimation";
+import TextAnimation from "../ui/TextAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -125,14 +127,14 @@ export default function Expertise() {
       <div className="relative w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div ref={titleRef} className="text-center space-y-4">
-          <h2 className="main-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-oswald font-normal text-foreground tracking-tighter leading-tight text-center">
+          <TitleAnimation className="main-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-oswald font-normal text-foreground tracking-tighter leading-tight text-center">
             Our Expertise
-          </h2>
+          </TitleAnimation>
           <div className="decorative-line h-1 w-20 sm:w-24 md:w-28 lg:w-32 bg-foreground mx-auto rounded-full" />
-          <p className="sub-heading max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto text-neutral-800 text-sm sm:text-base md:text-lg lg:text-xl text-center px-4">
+          <TextAnimation className="sub-heading max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto text-neutral-800 text-sm sm:text-base md:text-lg lg:text-xl text-center px-4">
             Delivering excellence across multiple domains with cutting-edge
             technology and innovative solutions
-          </p>
+          </TextAnimation>
         </div>
 
         {/* Swiper Carousel */}
@@ -236,30 +238,30 @@ export default function Expertise() {
         {/* Bottom stats or CTA section */}
         <div className="mt-16 sm:mt-20 md:mt-24 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-16">
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
+            <TextAnimation className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
               50+
-            </div>
-            <div className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
+            </TextAnimation>
+            <TextAnimation className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
               Projects Delivered
-            </div>
+            </TextAnimation>
           </div>
           <div className="hidden sm:block h-12 sm:h-16 w-px bg-foreground opacity-20" />
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
+            <TextAnimation className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
               98%
-            </div>
-            <div className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
+            </TextAnimation>
+            <TextAnimation className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
               Client Satisfaction
-            </div>
+            </TextAnimation>
           </div>
           <div className="hidden sm:block h-12 sm:h-16 w-px bg-foreground opacity-20" />
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
+            <TextAnimation className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-1 sm:mb-2">
               24/7
-            </div>
-            <div className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
+            </TextAnimation>
+            <TextAnimation className="text-foreground opacity-60 text-xs sm:text-sm uppercase tracking-wider">
               Support Available
-            </div>
+            </TextAnimation>
           </div>
         </div>
       </div>

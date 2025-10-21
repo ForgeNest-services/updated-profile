@@ -6,6 +6,8 @@ import Link from "next/link";
 import { ArrowRight, Lightbulb, Code, Target } from "lucide-react";
 import Scene3D from "../ui/Scene3D";
 import ErrorBoundary from "../ui/ErrorBoundary";
+import TitleAnimation from "../ui/TitleAnimation";
+import TextAnimation from "../ui/TextAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,9 +121,9 @@ export default function About() {
     >
       {/* Sticky Title - Left Side */}
       <div className="flex justify-start items-start flex-col">
-        <h2 className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+        <TitleAnimation className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
           OUR VISION
-        </h2>
+        </TitleAnimation>
         <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
       </div>
       <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-center">
@@ -141,11 +143,15 @@ export default function About() {
         >
           {/* Introduction */}
           <div className="space-y-4">
-            <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed">
+            <TextAnimation
+              className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed"
+              animationType="fadeUp"
+              delay={0.2}
+            >
               Forgenest is where innovation meets execution. We are a collective
               of designers, developers, and strategists dedicated to building
               digital experiences that inspire growth and transformation.
-            </p>
+            </TextAnimation>
           </div>
 
           {/* Who We Are */}
@@ -153,11 +159,15 @@ export default function About() {
             <h3 className="font-oswald text-3xl md:text-4xl lg:text-5xl font-bold uppercase">
               Who We Are
             </h3>
-            <p className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed">
+            <TextAnimation
+              className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed"
+              animationType="fadeUp"
+              delay={0.3}
+            >
               Our nest nurtures ideas from conception to reality. We blend
               technology, creativity, and strategy to forge digital experiences
               that inspire growth and imagination.
-            </p>
+            </TextAnimation>
           </div>
 
           {/* What We Do */}
@@ -210,13 +220,17 @@ export default function About() {
             <h3 className="font-oswald text-3xl md:text-4xl lg:text-5xl font-bold uppercase">
               Our Approach
             </h3>
-            <p className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed">
+            <TextAnimation
+              className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed"
+              animationType="fadeUp"
+              delay={0.4}
+            >
               We believe in the power of collaboration and iteration. Every
               project begins with understanding your vision, followed by
               strategic planning, meticulous execution, and continuous
               refinement. We don't just build products—we forge lasting
               partnerships.
-            </p>
+            </TextAnimation>
             <Link
               href="/about"
               className="inline-flex items-center gap-3 bg-foreground text-background px-6 md:px-8 py-3 md:py-4 rounded-full font-oswald text-sm md:text-base uppercase hover:opacity-90 transition-opacity duration-300 group mt-4"

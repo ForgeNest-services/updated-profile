@@ -7,45 +7,25 @@ import heroWalkAnimation from "@/lib/animations/hero.json";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { avatars } from "@/lib/constants/avatars";
 import { SpinningText } from "@/components/ui/spinning-text";
+import TitleAnimation from "@/components/ui/TitleAnimation";
+import TextAnimation from "@/components/ui/TextAnimation";
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const titleWordsRef = useRef<HTMLSpanElement[]>([]);
   const subtitleBoxRef = useRef<HTMLDivElement>(null);
-  const subtitleTextRef = useRef<HTMLParagraphElement>(null);
   const lottieRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const circlesRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Filter out null refs with null checks
-      const validTitleWords =
-        titleWordsRef.current?.filter((el) => el !== null) || [];
       const validCircles =
         circlesRef.current?.filter((el) => el !== null) || [];
-
-      if (validTitleWords.length === 0) return;
-
-      // Set initial states
-      gsap.set(validTitleWords, {
-        rotateX: 90,
-        opacity: 0,
-        transformOrigin: "bottom center",
-        transformPerspective: 1000,
-      });
 
       if (subtitleBoxRef.current) {
         gsap.set(subtitleBoxRef.current, {
           scaleX: 0,
           transformOrigin: "left center",
-        });
-      }
-
-      if (subtitleTextRef.current) {
-        gsap.set(subtitleTextRef.current, {
-          opacity: 0,
-          y: 20,
         });
       }
 
@@ -76,15 +56,6 @@ export default function Hero() {
         defaults: { ease: "power3.out" },
       });
 
-      // Animate title words standing up from sleep
-      tl.to(validTitleWords, {
-        rotateX: 0,
-        opacity: 1,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "back.out(1.5)",
-      });
-
       // Subtitle box expands
       if (subtitleBoxRef.current) {
         tl.to(
@@ -95,19 +66,6 @@ export default function Hero() {
             ease: "power2.inOut",
           },
           "-=0.6"
-        );
-      }
-
-      // Subtitle text fades in
-      if (subtitleTextRef.current) {
-        tl.to(
-          subtitleTextRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-          },
-          "-=0.4"
         );
       }
 
@@ -230,8 +188,6 @@ export default function Hero() {
     },
   ];
 
-  const titleWords = ["We Build", "What You", "Imagine."];
-
   return (
     <section
       ref={heroRef}
@@ -251,23 +207,9 @@ export default function Hero() {
       <div className="bg-[#f8f8f8] border-2 border-foreground/30 relative max-w-screen-2xl mx-auto px-4 md:px-12 lg:px-20 py-4 lg:py-12 rounded-3xl shadow-2xl flex flex-col-reverse md:flex-row gap-y-8 md:gap-x-8 lg:gap-x-12 justify-start item-start ">
         <div className="max-w-lg space-y-6">
           {/* Animated Title */}
-          <h1 className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
-            {titleWords.map((word, index) => (
-              <span
-                key={index}
-                ref={(el) => {
-                  if (el) titleWordsRef.current[index] = el;
-                }}
-                className="inline-block"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {word}
-                {index < titleWords.length - 1 && (
-                  <span className="inline-block w-2" />
-                )}
-              </span>
-            ))}
-          </h1>
+          <TitleAnimation className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+            We Build What You Imagine.
+          </TitleAnimation>
 
           {/* Animated Subtitle Box */}
           <div
@@ -276,14 +218,15 @@ export default function Hero() {
           >
             {/* Fading border right */}
             <div className="absolute top-0 right-0 h-full w-1 bg-gradient-to-b from-transparent via-white to-transparent opacity-50" />
-            <p
-              ref={subtitleTextRef}
+            <TextAnimation
               className="text-sm md:text-base lg:text-lg font-oswald font-light text-justify"
+              delay={0.4}
+              animationType="fadeUp"
             >
               A space where ideas are nurtured, designed, and brought to life.
               We blend technology, creativity, and strategy to forge digital
               experiences that inspire growth and imagination.
-            </p>
+            </TextAnimation>
           </div>
           <div className="relative">
             <div className="*:data-[slot=avatar]:ring-background flex justify-center items-center md:justify-start pt-10 -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar-image]:grayscale-0">
