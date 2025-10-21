@@ -9,7 +9,7 @@ export const expertiseData: ExpertiseItem[] = [
     title: "Custom Software Solutions",
     description:
       "We design and develop scalable web and mobile applications tailored to your business goals — efficient, reliable, and built for growth.",
-    icons: ["React", "Node.js", "Next.js", "MongoDB"],
+    icons: ["Python", "Node.js", "Next.js", "MongoDB", "SQL"],
   },
   {
     title: "Video Production & Editing",
@@ -49,6 +49,12 @@ export const expertiseData: ExpertiseItem[] = [
     title: "Cloud Solutions",
     description:
       "Empowering your business with secure, scalable cloud infrastructure and seamless migration for maximum performance.",
-    icons: ["AWS", "Microsoft Azure", "Google Cloud Platform", "DigitalOcean"],
+    icons: [
+      "AWS",
+      "Microsoft Azure",
+      "Google Cloud Platform",
+      "DigitalOcean",
+      "DevOps",
+    ],
   },
 ];

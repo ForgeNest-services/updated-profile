@@ -4,11 +4,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
-import { expertiseData } from "@/lib/constants/expertise";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import { expertiseData } from "@/lib/constants/expertise";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -103,16 +103,21 @@ export default function Expertise() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-24 md:py-40 overflow-hidden"
+      className="relative bg-background text-foreground py-24 md:py-40 overflow-hidden"
     >
       {/* Animated background grid */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                             linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(currentColor 1px, transparent 1px),
+                             linear-gradient(90deg, currentColor 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
+            color: "#181832",
+            maskImage:
+              "radial-gradient(ellipse at center, black 40%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at center, black 40%, transparent 100%)",
           }}
         />
       </div>
@@ -120,11 +125,11 @@ export default function Expertise() {
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div ref={titleRef} className="mb-20 text-center">
-          <h2 className="main-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+          <h2 className="main-heading text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground">
             Our Expertise
           </h2>
-          <div className="decorative-line h-1 w-32 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto mb-8 rounded-full" />
-          <p className="sub-heading max-w-3xl mx-auto text-slate-300 text-lg md:text-xl leading-relaxed">
+          <div className="decorative-line h-1 w-32 bg-foreground mx-auto mb-8 rounded-full" />
+          <p className="sub-heading max-w-3xl mx-auto text-foreground opacity-70 text-lg md:text-xl leading-relaxed">
             Delivering excellence across multiple domains with cutting-edge
             technology and innovative solutions
           </p>
@@ -137,12 +142,13 @@ export default function Expertise() {
             grabCursor={true}
             centeredSlides={true}
             slidesPerView="auto"
+            loop={true}
             coverflowEffect={{
               rotate: 50,
               stretch: 0,
               depth: 100,
               modifier: 1,
-              slideShadows: true,
+              slideShadows: false,
             }}
             autoplay={{
               delay: 3500,
@@ -160,7 +166,7 @@ export default function Expertise() {
                 spaceBetween: 20,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 3,
                 spaceBetween: 30,
               },
               1024: {
@@ -171,29 +177,22 @@ export default function Expertise() {
           >
             {expertiseData.map((item, index) => (
               <SwiperSlide key={index} className="pb-16">
-                <div className="group relative bg-gradient-to-br from-foreground-800 to-foreground-900 rounded-3xl p-8 border border-slate-700 hover:border-blue-500/50 transition-all duration-500 h-[420px] flex flex-col">
+                <div className="group relative bg-background rounded-3xl p-8 border-2 border-foreground border-opacity-20 hover:border-opacity-40 transition-all duration-500 h-[420px] flex flex-col">
                   {/* Glowing effect on hover */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-foreground-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+                  <div className="absolute inset-0 rounded-3xl bg-foreground opacity-0 group-hover:opacity-5 transition-opacity duration-500 blur-xl" />
 
                   {/* Card content */}
                   <div className="relative flex-1 flex flex-col">
-                    {/* Number badge */}
-                    {/* <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/50 group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-2xl font-bold">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div> */}
-
-                    {/* Title with gradient underline */}
+                    {/* Title with underline */}
                     <div className="mb-6">
-                      <h3 className="text-3xl font-bold mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
+                      <h3 className="text-3xl font-bold mb-3 text-foreground transition-all duration-300">
                         {item.title}
                       </h3>
-                      <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full group-hover:w-24 transition-all duration-300" />
+                      <div className="h-1 w-16 bg-foreground rounded-full group-hover:w-24 transition-all duration-300" />
                     </div>
 
                     {/* Description */}
-                    <p className="text-slate-300 text-base leading-relaxed mb-8 flex-1">
+                    <p className="text-foreground opacity-70 text-base leading-relaxed mb-8 flex-1">
                       {item.description}
                     </p>
 
@@ -202,10 +201,10 @@ export default function Expertise() {
                       {item.icons.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="relative px-4 py-2 text-sm font-medium text-slate-300 rounded-full border border-slate-600 group-hover:border-blue-500/50 group-hover:text-white transition-all duration-300 overflow-hidden"
+                          className="relative px-4 py-2 text-sm font-medium text-foreground rounded-full border border-foreground border-opacity-30 group-hover:border-opacity-50 transition-all duration-300 overflow-hidden"
                         >
                           <span className="relative z-10">{tech}</span>
-                          <span className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <span className="absolute inset-0 bg-foreground opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                         </span>
                       ))}
                     </div>
@@ -213,7 +212,7 @@ export default function Expertise() {
 
                   {/* Shine effect */}
                   <div className="absolute inset-0 rounded-3xl overflow-hidden">
-                    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12" />
+                    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-foreground to-transparent opacity-10 skew-x-12" />
                   </div>
                 </div>
               </SwiperSlide>
@@ -224,28 +223,22 @@ export default function Expertise() {
         {/* Bottom stats or CTA section */}
         <div className="mt-24 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
           <div className="text-center">
-            <div className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
-              50+
-            </div>
-            <div className="text-slate-400 text-sm uppercase tracking-wider">
+            <div className="text-5xl font-bold text-foreground mb-2">50+</div>
+            <div className="text-foreground opacity-60 text-sm uppercase tracking-wider">
               Projects Delivered
             </div>
           </div>
-          <div className="hidden md:block h-16 w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent" />
+          <div className="hidden md:block h-16 w-px bg-foreground opacity-20" />
           <div className="text-center">
-            <div className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-              98%
-            </div>
-            <div className="text-slate-400 text-sm uppercase tracking-wider">
+            <div className="text-5xl font-bold text-foreground mb-2">98%</div>
+            <div className="text-foreground opacity-60 text-sm uppercase tracking-wider">
               Client Satisfaction
             </div>
           </div>
-          <div className="hidden md:block h-16 w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent" />
+          <div className="hidden md:block h-16 w-px bg-foreground opacity-20" />
           <div className="text-center">
-            <div className="text-5xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent mb-2">
-              24/7
-            </div>
-            <div className="text-slate-400 text-sm uppercase tracking-wider">
+            <div className="text-5xl font-bold text-foreground mb-2">24/7</div>
+            <div className="text-foreground opacity-60 text-sm uppercase tracking-wider">
               Support Available
             </div>
           </div>
@@ -263,21 +256,22 @@ export default function Expertise() {
         }
 
         .expertise-swiper .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.5);
+          background: rgba(24, 24, 50, 0.3);
           width: 10px;
           height: 10px;
         }
 
         .expertise-swiper .swiper-pagination-bullet-active {
-          background: linear-gradient(to right, #3b82f6, #a855f7);
+          background: #181832;
           width: 30px;
           border-radius: 5px;
         }
 
-        .swiper-slide-shadow-left,
-        .swiper-slide-shadow-right {
-          background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
+        .expertise-swiper .swiper-slide-shadow-left,
+        .expertise-swiper .swiper-slide-shadow-right {
+          display: none !important;
         }
+
       `}</style>
     </section>
   );
