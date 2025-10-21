@@ -225,10 +225,7 @@ export default function OurProcess() {
 
                   {/* Content */}
                   <div className="flex-1 text-center md:text-start">
-                    <h3 className="text-xl md:text-2xl font-oswald font-semibold text-white mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed">
+                    <p className="text-sm md:text-xl text-neutral-300 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
