@@ -1,9 +1,17 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { initBarba } from './barba-config';
+import { useEffect } from "react";
+import { initBarba } from "./barba-config";
 
-export default function BarbaWrapper({ children }: { children: React.ReactNode }) {
+interface BarbaWrapperProps {
+  children: React.ReactNode;
+  namespace?: string;
+}
+
+export default function BarbaWrapper({
+  children,
+  namespace = "home",
+}: BarbaWrapperProps) {
   useEffect(() => {
     // Delay initialization to ensure DOM is ready
     const timer = setTimeout(() => {
@@ -15,7 +23,7 @@ export default function BarbaWrapper({ children }: { children: React.ReactNode }
 
   return (
     <div data-barba="wrapper">
-      <div data-barba="container" data-barba-namespace="home">
+      <div data-barba="container" data-barba-namespace={namespace}>
         {children}
       </div>
     </div>
