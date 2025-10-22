@@ -36,8 +36,14 @@ export default function Footer() {
       { label: "Support", href: "/support" },
     ],
     legal: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
+      {
+        label: "Privacy Policy",
+        href: "https://www.privacypolicies.com/live/7159b8ac-d3a9-4910-b7e8-9be078f6be8c",
+      },
+      {
+        label: "Terms of Service",
+        href: "https://www.freeprivacypolicy.com/live/fa18778c-83b0-4636-847f-6a37bb276e1a",
+      },
       { label: "Cookie Policy", href: "/cookies" },
     ],
   };
@@ -204,6 +210,7 @@ export default function Footer() {
                 <li key={index}>
                   <Link
                     href={item.href}
+                    target="_blank"
                     className="flex items-start gap-3 text-white/70 hover:text-white transition-colors duration-300 text-xs md:text-sm group"
                   >
                     <span className="flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300">

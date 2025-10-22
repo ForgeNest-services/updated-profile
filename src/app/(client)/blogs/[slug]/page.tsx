@@ -78,7 +78,7 @@ export default async function BlogDetailPage({
                 alt={blog.title}
                 fill
                 priority
-                className="object-cover"
+                className="object-contain md:object-cover"
               />
               <div className="absolute inset-0 bg-foreground/10" />
             </div>
