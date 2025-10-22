@@ -1,15 +1,17 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useTransition } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mail, Send, CheckCircle } from "lucide-react";
+import { subscribeAction } from "@/server/newsletter";
+import { toast } from "sonner";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, startTransition] = useTransition();
 
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -38,21 +40,18 @@ export default function Newsletter() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitted(true);
-      setIsLoading(false);
-      setEmail("");
-
-      // Reset after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-    }, 1500);
+  const action = async (formData: FormData) => {
+    startTransition(async () => {
+      try {
+        await subscribeAction(formData);
+        setIsSubmitted(true);
+        setEmail("");
+        toast.success("Subscribed successfully");
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } catch (e: any) {
+        toast.error(e?.message || "Subscription failed");
+      }
+    });
   };
 
   return (
@@ -77,19 +76,19 @@ export default function Newsletter() {
             <div className="absolute bottom-0 left-0 w-48 h-48 border-2 border-white rounded-full translate-y-1/2 -translate-x-1/2" />
           </div>
 
-          <div className="relative z-10 max-w-2xl mx-auto text-center">
+          <div className="relative z-10 max-w-2xl mx-auto text-center space-y-6">
             {/* Icon */}
-            <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full mb-6">
+            <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-full">
               <Mail className="w-8 h-8 md:w-10 md:h-10" />
             </div>
 
             {/* Title */}
-            <h2 className="font-oswald text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h2 className="text-2xl text-center md:text-4xl lg:text-6xl font-oswald font-normal text-background tracking-tighter leading-tight">
               Stay In The Loop
             </h2>
 
             {/* Description */}
-            <p className="text-base md:text-lg text-white/80 mb-8 md:mb-10">
+            <p className="text-base md:text-lg text-white/80">
               Subscribe to our newsletter and get the latest updates on
               projects, insights, and exclusive content delivered straight to
               your inbox.
@@ -98,11 +97,12 @@ export default function Newsletter() {
             {/* Form or Success Message */}
             {!isSubmitted ? (
               <form
-                onSubmit={handleSubmit}
+                action={action}
                 className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto"
               >
                 <input
                   type="email"
+                  name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"

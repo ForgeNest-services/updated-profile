@@ -135,7 +135,7 @@ export default function Footer() {
           <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-8">
             {/* Company */}
             <div>
-              <h3 className="font-oswald text-lg font-bold mb-4 uppercase">
+              <h3 className="font-oswald text-sm md:text-lg font-normal mb-4 uppercase">
                 Company
               </h3>
               <ul className="space-y-3">
@@ -143,7 +143,7 @@ export default function Footer() {
                   <li key={index}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group"
+                      className="text-white/70 hover:text-white transition-colors duration-300 text-xs md:text-sm flex items-center gap-2 group"
                     >
                       <ArrowRight className="w-0 h-4 group-hover:w-4 transition-all duration-300 opacity-0 group-hover:opacity-100" />
                       {link.label}
@@ -155,7 +155,7 @@ export default function Footer() {
 
             {/* Services */}
             <div>
-              <h3 className="font-oswald text-lg font-bold mb-4 uppercase">
+              <h3 className="font-oswald text-sm md:text-lg font-normal mb-4 uppercase">
                 Services
               </h3>
               <ul className="space-y-3">
@@ -163,7 +163,7 @@ export default function Footer() {
                   <li key={index}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group"
+                      className="text-white/70 hover:text-white transition-colors duration-300 text-xs md:text-sm flex items-center gap-2 group"
                     >
                       <ArrowRight className="w-0 h-4 group-hover:w-4 transition-all duration-300 opacity-0 group-hover:opacity-100" />
                       {link.label}
@@ -175,7 +175,7 @@ export default function Footer() {
 
             {/* Resources */}
             <div>
-              <h3 className="font-oswald text-lg font-bold mb-4 uppercase">
+              <h3 className="font-oswald text-sm md:text-lg font-normal mb-4 uppercase">
                 Resources
               </h3>
               <ul className="space-y-3">
@@ -183,7 +183,7 @@ export default function Footer() {
                   <li key={index}>
                     <Link
                       href={link.href}
-                      className="text-white/70 hover:text-white transition-colors duration-300 text-sm flex items-center gap-2 group"
+                      className="text-white/70 hover:text-white transition-colors duration-300 text-xs md:text-sm flex items-center gap-2 group"
                     >
                       <ArrowRight className="w-0 h-4 group-hover:w-4 transition-all duration-300 opacity-0 group-hover:opacity-100" />
                       {link.label}
@@ -196,7 +196,7 @@ export default function Footer() {
 
           {/* Contact Info - Takes 2 columns */}
           <div className="lg:col-span-2">
-            <h3 className="font-oswald text-lg font-bold mb-4 uppercase">
+            <h3 className="font-oswald text-sm md:text-lg font-normal mb-4 uppercase">
               Get In Touch
             </h3>
             <ul className="space-y-4">
@@ -204,7 +204,7 @@ export default function Footer() {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className="flex items-start gap-3 text-white/70 hover:text-white transition-colors duration-300 text-sm group"
+                    className="flex items-start gap-3 text-white/70 hover:text-white transition-colors duration-300 text-xs md:text-sm group"
                   >
                     <span className="flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300">
                       {item.icon}
