@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { BarbaWrapper, Navbar, SmoothScroll } from "@/components/commons";
 import { Footer } from "@/components/home";
 

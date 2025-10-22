@@ -2,6 +2,7 @@
 import React from "react";
 import { useLottie } from "lottie-react";
 import notFoundAnimation from "@/lib/animations/not_found.json";
+import Link from "next/link";
 
 export default function NotFoundPage() {
   const options = {
@@ -10,5 +11,12 @@ export default function NotFoundPage() {
   };
 
   const { View } = useLottie(options);
-  return <div className="max-w-screen-2xl mx-auto px-4">{View}</div>;
+  return (
+    <div className="max-w-screen-2xl mx-auto px-4 flex flex-col justify-center items-center space-y-6">
+      {View}
+      <Link href="/" className="text-white bg-foreground p-6 rounded-3xl">
+        Back to Home Page
+      </Link>
+    </div>
+  );
 }

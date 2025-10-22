@@ -25,7 +25,7 @@ import { expertiseData } from "@/lib/constants/expertise";
 import {
   submitContactForm,
   type ContactFormData,
-} from "@/app/contact-us/actions";
+} from "@/app/(client)/contact-us/actions";
 
 export default function ContactForm() {
   const serviceOptions: Option[] = useMemo(
