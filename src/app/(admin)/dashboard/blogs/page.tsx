@@ -15,6 +15,23 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default async function BlogsDashboardPage() {
   const blogs = await listBlogs();
+  const clientBlogs = blogs.map((b) => ({
+    id: b._id.toString(),
+    title: b.title,
+    slug: b.slug,
+    excerpt: b.excerpt,
+    content: b.content,
+    image: b.image,
+    metaTitle: b.metaTitle,
+    metaDescription: b.metaDescription,
+    tags: b.tags,
+    keywords: b.keywords,
+    author: b.author,
+    authorImage: b.authorImage,
+    isPublished: b.isPublished,
+    createdAt: new Date(b.createdAt).toISOString(),
+    updatedAt: new Date(b.updatedAt).toISOString(),
+  }));
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -181,7 +198,7 @@ export default async function BlogsDashboardPage() {
       </div>
 
       <div className="bg-card rounded-xl border border-foreground/20 shadow-sm">
-        <BlogsTable blogs={blogs} />
+        <BlogsTable blogs={clientBlogs} />
       </div>
     </div>
   );

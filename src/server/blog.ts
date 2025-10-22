@@ -117,8 +117,76 @@ export async function createBlogAction(formData: FormData) {
   revalidatePath("/dashboard/blogs");
 }
 
-export async function deleteBlogAction(id: string) {
+export async function deleteBlogAction(formData: FormData) {
+  const id = String(formData.get("id") || "");
+  if (!id) throw new Error("Missing blog id");
   const col = await getCollection();
   await col.deleteOne({ _id: new ObjectId(id) });
+  revalidatePath("/dashboard/blogs");
+}
+
+export async function updateBlogAction(formData: FormData) {
+  const id = String(formData.get("id") || "");
+  if (!id) throw new Error("Missing blog id");
+
+  const title = String(formData.get("title") || "").trim();
+  const excerpt = String(formData.get("excerpt") || "").trim();
+  const content = String(formData.get("content") || "").trim();
+  const isPublished = String(formData.get("isPublished") || "false") === "true";
+  const metaTitle = String(formData.get("metaTitle") || "").trim() || undefined;
+  const metaDescription =
+    String(formData.get("metaDescription") || "").trim() || undefined;
+  const tags = String(formData.get("tags") || "")
+    .split(",")
+    .map((t) => t.trim())
+    .filter(Boolean);
+  const keywords = String(formData.get("keywords") || "")
+    .split(",")
+    .map((t) => t.trim())
+    .filter(Boolean);
+  const file = formData.get("image") as File | null;
+  const oldImage = String(formData.get("oldImage") || "") || undefined;
+
+  if (!title || !excerpt || !content) {
+    throw new Error("Missing required fields");
+  }
+
+  let imageUrl: string | undefined = oldImage;
+  if (file && file.size > 0) {
+    const uploaded = await uploadBlogImage(file);
+    imageUrl = uploaded.url;
+  }
+
+  const col = await getCollection();
+  const slug = slugify(title);
+
+  let uniqueSlug = slug;
+  let counter = 1;
+  while (
+    await col.findOne({ slug: uniqueSlug, _id: { $ne: new ObjectId(id) } })
+  ) {
+    uniqueSlug = `${slug}-${counter++}`;
+  }
+
+  const now = new Date();
+  await col.updateOne(
+    { _id: new ObjectId(id) },
+    {
+      $set: {
+        title,
+        slug: uniqueSlug,
+        excerpt,
+        content,
+        image: imageUrl,
+        metaTitle,
+        metaDescription,
+        tags: tags.length ? tags : undefined,
+        keywords: keywords.length ? keywords : undefined,
+        isPublished,
+        updatedAt: now,
+      },
+    }
+  );
+
   revalidatePath("/dashboard/blogs");
 }

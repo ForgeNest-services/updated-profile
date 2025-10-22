@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Oswald } from "next/font/google";
 import "../globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const oswald = Oswald({
   variable: "--font-oswald",
@@ -21,6 +22,7 @@ export default function AdminLayout({
     <html lang="en">
       <body className={`${oswald.variable} font-sans antialiased`}>
         <div className="min-h-screen bg-background">{children}</div>
+        <Toaster />
       </body>
     </html>
   );
