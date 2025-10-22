@@ -4,7 +4,10 @@ import { notFound } from "next/navigation";
 import TitleAnimation from "@/components/ui/TitleAnimation";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, Clock, Tag, User, Copy, Check } from "lucide-react";
+import { Calendar, Clock, Tag, User } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 import { ShareButtons } from "@/components/blogs";
 
 export const dynamic = "force-dynamic";
@@ -165,19 +168,20 @@ export default async function BlogDetailPage({
 
         {/* Article Content */}
         <div className="max-w-4xl mx-auto pb-20">
-          <section className="prose prose-lg md:prose-xl max-w-none dark:prose-invert prose-headings:font-oswald prose-headings:font-normal prose-p:text-neutral-800 prose-p:leading-relaxed prose-a:text-foreground prose-a:underline hover:prose-a:no-underline prose-strong:text-foreground prose-img:rounded-2xl prose-img:shadow-sm">
-            {blog.content.split("\n\n").map((para, i) => {
-              // Check if paragraph is a heading
-              if (para.startsWith("# ")) {
-                return <h1 key={i}>{para.replace("# ", "")}</h1>;
-              } else if (para.startsWith("## ")) {
-                return <h2 key={i}>{para.replace("## ", "")}</h2>;
-              } else if (para.startsWith("### ")) {
-                return <h3 key={i}>{para.replace("### ", "")}</h3>;
-              }
-              return <p key={i}>{para}</p>;
-            })}
-          </section>
+          <div className="prose prose-lg md:prose-xl max-w-none dark:prose-invert prose-headings:font-oswald prose-headings:font-bold prose-p:text-foreground/80 prose-p:leading-relaxed prose-a:text-foreground prose-a:underline hover:prose-a:no-underline prose-strong:text-foreground prose-img:rounded-lg">
+            {/* Normalize headings missing a space after # (e.g., "##Title" -> "## Title") */}
+            {(() => {
+              const normalized = blog.content.replace(
+                /^(#{1,6})(?!\s)(.*)$/gm,
+                "$1 $2"
+              );
+              return (
+                <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+                  {normalized}
+                </ReactMarkdown>
+              );
+            })()}
+          </div>
 
           {/* Keywords Section */}
           {blog.keywords && blog.keywords.length > 0 && (

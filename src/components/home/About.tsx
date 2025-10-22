@@ -109,7 +109,7 @@ export default function About() {
         {/* 3D Building Background - Full Height Canvas */}
         <div className="hidden md:block lg:col-span-1 opacity-50">
           <ErrorBoundary>
-            <Scene3D scrollProgress={scrollProgress} />
+            <Scene3D scrollProgress={scrollProgress} modelHeight={128} />
           </ErrorBoundary>
         </div>
         {/* Scrolling Content - Right Side (2 columns) */}
@@ -120,31 +120,47 @@ export default function About() {
           {/* Introduction */}
           <div className="space-y-4">
             <TextAnimation
-              className="text-sm md:text-xl text-foreground leading-relaxed"
+              className="text-sm md:text-xl text-foreground leading-relaxed w-full"
               animationType="fadeUp"
               delay={0.2}
             >
               Forgenest is where innovation meets execution. We are a collective
               of designers, developers, and strategists dedicated to building
-              digital experiences that inspire growth and transformation.
+              digital experiences that inspire growth and transformation. Our
+              approach is rooted in curiosity and guided by craftsmanship—every
+              interface, interaction, and pixel is intentional. We partner
+              closely with founders and teams to uncover the real problem behind
+              the brief and shape product experiences that feel simple, human,
+              and inevitable. From the first workshop to the final launch, we
+              align business goals with design clarity and engineering
+              discipline so that ideas not only come to life but endure in the
+              market.
             </TextAnimation>
           </div>
           <div className="space-y-6">
             <TextAnimation
-              className="text-sm md:text-xl text-foreground leading-relaxed"
+              className="text-sm md:text-xl text-foreground leading-relaxed w-full"
               animationType="fadeUp"
               delay={0.3}
             >
               Our nest nurtures ideas from conception to reality. We blend
               technology, creativity, and strategy to forge digital experiences
-              that inspire growth and imagination.
+              that inspire growth and imagination. Prototyping early and often
+              allows us to learn fast and build with confidence, while
+              structured discovery reduces risk and uncovers opportunities for
+              differentiation. We believe that performance is a feature,
+              accessibility is table stakes, and delightful details are what
+              transform a good product into a loved product. Whether we are
+              crafting a brand system, a design language, or a complex
+              full‑stack application, we prioritize clarity, maintainability,
+              and long‑term scalability.
             </TextAnimation>
           </div>
 
           {/* Our Approach */}
           <div className="space-y-6">
             <TextAnimation
-              className="text-sm md:text-xl text-foreground leading-relaxed"
+              className="text-sm md:text-xl text-foreground leading-relaxed w-full"
               animationType="fadeUp"
               delay={0.4}
             >
@@ -152,7 +168,13 @@ export default function About() {
               project begins with understanding your vision, followed by
               strategic planning, meticulous execution, and continuous
               refinement. We don't just build products—we forge lasting
-              partnerships.
+              partnerships. Our multi‑disciplinary teams operate as an extension
+              of yours, sharing context, constraints, and accountability. After
+              launch, we measure impact, ship improvements, and evolve the
+              roadmap with real user insights. This cycle—discover, design,
+              develop, validate—helps us deliver outcomes that move the needle
+              for your customers and your business, not just outputs on a
+              timeline.
             </TextAnimation>
             <Link
               href="/about-us"

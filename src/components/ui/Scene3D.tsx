@@ -10,15 +10,28 @@ import BuildingModel from "./BuildingModel";
 
 interface Scene3DProps {
   scrollProgress: number;
+  heightClass?: string;
+  modelHeight?: number;
 }
 
-export default function Scene3D({ scrollProgress }: Scene3DProps) {
+export default function Scene3D({
+  scrollProgress,
+  heightClass,
+  modelHeight = 32,
+}: Scene3DProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  // Disable React DevTools for Three.js components to prevent semver errors
   const isDev = process.env.NODE_ENV === "development";
 
+  // Adjust camera distance based on model height to prevent cropping
+  const cameraDistance = Math.max(15, modelHeight * 0.8);
+  const cameraY = modelHeight * 0.1;
+
   return (
-    <div className="relative w-full">
+    <div
+      className={`relative w-full ${
+        heightClass ?? "h-[360px] md:h-[480px] lg:h-[560px]"
+      }`}
+    >
       {/* Loading overlay */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center z-10">
@@ -28,7 +41,6 @@ export default function Scene3D({ scrollProgress }: Scene3DProps) {
 
       <Canvas
         shadows
-        style={{ height: "1000px" }}
         gl={{
           alpha: true,
           antialias: true,
@@ -50,7 +62,11 @@ export default function Scene3D({ scrollProgress }: Scene3DProps) {
         onCreated={() => setIsLoaded(true)}
       >
         <Suspense fallback={null}>
-          <PerspectiveCamera makeDefault position={[0, 0, 15]} fov={110} />
+          <PerspectiveCamera
+            makeDefault
+            position={[0, cameraY, cameraDistance]}
+            fov={75}
+          />
           <ambientLight intensity={0.5} />
           <directionalLight
             position={[10, 10, 5]}
@@ -60,7 +76,10 @@ export default function Scene3D({ scrollProgress }: Scene3DProps) {
             shadow-mapSize-height={1024}
           />
           <spotLight position={[-10, 10, -5]} intensity={0.3} />
-          <BuildingModel scrollProgress={scrollProgress} />
+          <BuildingModel
+            scrollProgress={scrollProgress}
+            modelHeight={modelHeight}
+          />
           <Environment preset="city" />
           <OrbitControls
             enablePan={false}

@@ -6,9 +6,13 @@ import * as THREE from "three";
 
 interface BuildingModelProps {
   scrollProgress: number;
+  modelHeight?: number;
 }
 
-export default function BuildingModel({ scrollProgress }: BuildingModelProps) {
+export default function BuildingModel({
+  scrollProgress,
+  modelHeight = 32,
+}: BuildingModelProps) {
   const groupRef = useRef<THREE.Group>(null);
 
   try {
@@ -36,9 +40,12 @@ export default function BuildingModel({ scrollProgress }: BuildingModelProps) {
       }
     });
 
+    const scale = modelHeight;
+    const yPosition = -(modelHeight * 0.4);
+
     return (
       <group ref={groupRef}>
-        <primitive object={scene} scale={22} position={[0, -2, 0]} />
+        <primitive object={scene} scale={scale} position={[0, yPosition, 0]} />
       </group>
     );
   } catch (error) {

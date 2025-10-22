@@ -101,11 +101,14 @@ export default async function BlogsDashboardPage() {
                     </label>
                     <Textarea
                       name="content"
-                      rows={8}
+                      rows={12}
                       required
                       className="w-full"
-                      placeholder="Write your blog content here..."
+                      placeholder="Write using Markdown. Use #, ##, ### for headings; blank line for new paragraph; - for lists; **bold**; [link](https://example.com)."
                     />
+                    <p className="text-xs text-foreground/60 mt-1">
+                      Supports Markdown (GFM). Tip: write headings like "## Heading" (with a space), blank line = new paragraph, single line break becomes a <br />.
+                    </p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">

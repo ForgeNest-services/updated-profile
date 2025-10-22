@@ -28,7 +28,7 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+          <div className="w-full h-full bg-background flex items-center justify-center">
             <div className="text-gray-500">
               3D content temporarily unavailable
             </div>
