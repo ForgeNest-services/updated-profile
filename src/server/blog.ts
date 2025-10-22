@@ -57,6 +57,66 @@ export async function listBlogs(): Promise<Blog[]> {
   return docs as Blog[];
 }
 
+export type BlogRow = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  image?: string;
+  createdAt: string;
+};
+
+function buildSearchFilter(q?: string) {
+  if (!q) return {};
+  const rx = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+  return {
+    $or: [
+      { title: rx },
+      { excerpt: rx },
+      { content: rx },
+      { tags: rx },
+      { keywords: rx },
+    ],
+  } as const;
+}
+
+export async function countPublishedBlogs(q?: string) {
+  const col = await getCollection();
+  const filter = { isPublished: true, ...buildSearchFilter(q) } as any;
+  return col.countDocuments(filter);
+}
+
+export async function listPublishedBlogsPaginated(params: {
+  page: number;
+  pageSize: number;
+  q?: string;
+}): Promise<{ items: BlogRow[]; total: number }> {
+  const { page, pageSize, q } = params;
+  const col = await getCollection();
+  const filter = { isPublished: true, ...buildSearchFilter(q) } as any;
+  const cursor = col
+    .find(filter, { projection: { title: 1, slug: 1, excerpt: 1, image: 1, createdAt: 1 } })
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * pageSize)
+    .limit(pageSize);
+  const [docs, total] = await Promise.all([cursor.toArray(), col.countDocuments(filter)]);
+  const items: BlogRow[] = docs.map((d: any) => ({
+    id: d._id.toString(),
+    title: d.title,
+    slug: d.slug,
+    excerpt: d.excerpt,
+    image: d.image,
+    createdAt: new Date(d.createdAt).toISOString(),
+  }));
+  return { items, total };
+}
+
+export async function getPublishedBlogBySlug(slug: string): Promise<Blog | null> {
+  const col = await getCollection();
+  const doc = await col.findOne({ slug, isPublished: true });
+  return (doc as Blog) || null;
+}
+
 export async function createBlogAction(formData: FormData) {
   const title = String(formData.get("title") || "").trim();
   const excerpt = String(formData.get("excerpt") || "").trim();
