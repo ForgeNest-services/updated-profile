@@ -4,7 +4,7 @@ import TextAnimation from "../ui/TextAnimation";
 
 export default function BlogsHeader() {
   return (
-    <div className="max-w-screen-2xl mx-auto px-4">
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-start items-start flex-col">
         <TitleAnimation className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
           Our Blogs

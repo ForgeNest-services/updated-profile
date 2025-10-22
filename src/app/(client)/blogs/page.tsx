@@ -20,15 +20,17 @@ export default async function BlogsPage({
   });
 
   return (
-    <main className="mx-auto max-w-screen-4xl px-4 py-20 md:py-32">
-      <BlogsHeader />
-      <BlogManager
-        items={items}
-        total={total}
-        page={page}
-        pageSize={pageSize}
-        q={q}
-      />
+    <main className="bg-background text-foreground py-20 md:py-32">
+      <div className="max-w-screen-4xl mx-auto">
+        <BlogsHeader />
+        <BlogManager
+          items={items}
+          total={total}
+          page={page}
+          pageSize={pageSize}
+          q={q}
+        />
+      </div>
     </main>
   );
 }

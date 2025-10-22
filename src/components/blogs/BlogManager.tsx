@@ -25,12 +25,18 @@ export default function BlogManager({
   };
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4">
-      <div className="flex justify-end items-end flex-col">
-        <SearchBar q={q} />
+    <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      <div className="space-y-8">
+        <div className="flex justify-end">
+          <SearchBar q={q} />
+        </div>
 
         {items.length === 0 ? (
-          <div className="text-sm text-foreground/70">No posts found.</div>
+          <div className="text-center py-12">
+            <div className="text-neutral-800 text-base md:text-lg">
+              No posts found.
+            </div>
+          </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {items.map((b) => (
@@ -40,28 +46,28 @@ export default function BlogManager({
         )}
 
         {totalPages > 1 && (
-          <nav className="mt-8 flex items-center justify-between">
+          <nav className="mt-12 flex items-center justify-center gap-4">
             <Link
               href={buildHref(Math.max(1, page - 1))}
               aria-disabled={page === 1}
-              className={`rounded-md border px-3 py-1 text-sm ${
+              className={`rounded-full border border-foreground/20 px-6 py-3 text-sm font-medium transition-all duration-300 ${
                 page === 1
                   ? "pointer-events-none opacity-50"
-                  : "hover:bg-foreground/5"
+                  : "hover:bg-foreground/5 hover:border-foreground/40"
               }`}
             >
               Previous
             </Link>
-            <div className="text-sm text-foreground/70">
+            <div className="text-sm text-neutral-800 font-medium">
               Page {page} of {totalPages}
             </div>
             <Link
               href={buildHref(Math.min(totalPages, page + 1))}
               aria-disabled={page === totalPages}
-              className={`rounded-md border px-3 py-1 text-sm ${
+              className={`rounded-full border border-foreground/20 px-6 py-3 text-sm font-medium transition-all duration-300 ${
                 page === totalPages
                   ? "pointer-events-none opacity-50"
-                  : "hover:bg-foreground/5"
+                  : "hover:bg-foreground/5 hover:border-foreground/40"
               }`}
             >
               Next
