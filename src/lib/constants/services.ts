@@ -2,65 +2,80 @@ export interface ServiceItem {
   id: number;
   title: string;
   description: string;
-  mediaType: "image" | "video";
+  features: string[];
   mediaUrl: string;
+  mediaType: "video" | "image";
 }
 
-export const services: ServiceItem[] = [
+export const servicesData: ServiceItem[] = [
   {
     id: 1,
-    title: "Website Development",
+    title: "Custom Software Solutions",
     description:
-      "We build high-performance, modern, and scalable websites tailored to brand identity and business needs. From portfolio websites to enterprise-level platforms, our solutions are responsive, SEO-optimized, secure, and capable of seamless integrations like e-commerce, booking systems, dashboards, and automation tools.",
+      "We craft tailored software solutions that perfectly align with your business goals. From concept to deployment, we build scalable, efficient, and reliable applications that drive growth and innovation. Our expertise spans web applications, mobile apps, and enterprise systems, all designed to solve your unique challenges.",
+    features: [
+      "Scalable Architecture",
+      "Modern Tech Stack",
+      "API Integration",
+      "Cloud-Ready Solutions",
+    ],
+    mediaUrl: "/video/custom-software.mp4",
     mediaType: "video",
-    mediaUrl: "/videos/website-showcase.mp4",
   },
   {
     id: 2,
-    title: "Mobile App Development",
+    title: "Website Development",
     description:
-      "We craft intuitive and engaging mobile applications for Android and iOS using cutting-edge frameworks. Our apps ensure great performance, a smooth user journey, and smart backend connectivity — designed to scale with your growing audience and business ecosystem.",
-    mediaType: "image",
-    mediaUrl: "/images/mobile-apps.jpg",
+      "Your website is your digital storefront. We create stunning, high-performance websites that captivate visitors and convert them into customers. With responsive design, lightning-fast load times, and intuitive user experiences, we ensure your online presence stands out in the crowded digital landscape.",
+    features: [
+      "Responsive Design",
+      "SEO Optimized",
+      "Fast Performance",
+      "CMS Integration",
+    ],
+    mediaUrl: "/video/website.mp4",
+    mediaType: "video",
   },
   {
     id: 3,
-    title: "Videography & Production",
+    title: "Product Videography",
     description:
-      "We bring your stories to life through compelling cinematic visuals. Whether it’s events, commercials, or corporate videos, our production team handles every stage — scripting, shooting, lighting, audio, and drone operations — delivering professional and captivating content.",
+      "Bring your products to life with stunning 3D visualizations and cinematic videography. We combine cutting-edge 3D modeling with professional motion graphics in After Effects to create product videos that mesmerize and sell. Perfect for e-commerce, product launches, and marketing campaigns.",
+    features: [
+      "3D Product Modeling",
+      "After Effects Magic",
+      "Cinematic Quality",
+      "Brand Storytelling",
+    ],
+    mediaUrl: "/video/product-videography.mp4",
     mediaType: "video",
-    mediaUrl: "/videos/videography.mp4",
   },
   {
     id: 4,
-    title: "Video Editing",
+    title: "Photography Services",
     description:
-      "Our editors take raw footage and carefully transform it into polished storytelling content. Using advanced editing, color grading, visual effects, motion text, transitions, and sound mixing — we ensure your final video stands out with style and clarity.",
-    mediaType: "image",
-    mediaUrl: "/images/video-editing.jpg",
+      "Capture the essence of your brand through professional photography that tells your story. From product shots to lifestyle imagery, our photography services deliver high-quality visuals that engage audiences and elevate your brand identity across all platforms.",
+    features: [
+      "Product Photography",
+      "Lifestyle Shoots",
+      "Post-Production",
+      "Brand Consistency",
+    ],
+    mediaUrl: "/video/photography.mp4",
+    mediaType: "video",
   },
   {
     id: 5,
-    title: "Motion Graphics & Animation",
+    title: "Social Media Management",
     description:
-      "We design professional motion graphics, animations, and explainer videos that elevate your brand’s communication. Perfect for social media ads, intro animations, product showcases, and educational content — delivered with a strong visual impact and fluid movement.",
+      "Build a powerful social media presence that drives engagement and grows your audience. Our comprehensive social media management services include content creation, strategy development, community management, and analytics to ensure your brand thrives in the digital conversation.",
+    features: [
+      "Content Strategy",
+      "Community Engagement",
+      "Analytics & Insights",
+      "Multi-Platform Management",
+    ],
+    mediaUrl: "/video/social-media.mp4",
     mediaType: "video",
-    mediaUrl: "/videos/motion-graphics.mp4",
-  },
-  {
-    id: 6,
-    title: "Graphic Design & Branding",
-    description:
-      "Every brand has a story, and we turn that story into a visual expression. From logos and social media creatives to complete branding systems, we design visually pleasing and memorable graphics that help your business make an instant and lasting impression.",
-    mediaType: "image",
-    mediaUrl: "/images/graphic-design.jpg",
-  },
-  {
-    id: 7,
-    title: "Cloud & Infrastructure Solutions",
-    description:
-      "We enable businesses to migrate, deploy, and operate confidently on the cloud. With services across AWS, Azure, GCP, and private cloud environments, we ensure scalability, performance, automation, backups, and security — so your systems run smoothly, 24/7.",
-    mediaType: "image",
-    mediaUrl: "/images/cloud-services.jpg",
   },
 ];
