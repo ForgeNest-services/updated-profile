@@ -18,8 +18,9 @@ export default function BlogCard({ blog }: { blog: BlogCardData }) {
           <Image
             src={blog.image}
             alt={blog.title}
-            width={200}
-            height={200}
+            width={800}
+            height={400}
+            quality={90}
             priority
             className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />

@@ -71,10 +71,7 @@ export default function BlogsTable({ blogs }: { blogs: BlogRow[] }) {
         </thead>
         <tbody>
           {blogs.map((b) => (
-            <tr
-key={b.id}
-              className="border-t border-foreground/10"
-            >
+            <tr key={b.id} className="border-t border-foreground/10">
               <td className="px-4 py-2">
                 {b.image ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -124,11 +121,7 @@ key={b.id}
                           }}
                           className="space-y-4"
                         >
-                          <input
-                            type="hidden"
-                            name="id"
-value={b.id}
-                          />
+                          <input type="hidden" name="id" value={b.id} />
                           <input
                             type="hidden"
                             name="oldImage"
@@ -174,9 +167,17 @@ value={b.id}
                               name="image"
                               type="file"
                               accept="image/jpeg,image/jpg,image/png,image/webp"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file && file.size > 10 * 1024 * 1024) {
+                                  // 10MB limit
+                                  alert("File size must be less than 10MB");
+                                  e.target.value = "";
+                                }
+                              }}
                             />
                             <p className="text-xs text-foreground/60 mt-1">
-                              Leave empty to keep existing image
+                              Max 10MB. Leave empty to keep existing image
                             </p>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -223,7 +224,7 @@ value={b.id}
                           </div>
                           <div className="flex items-center gap-2">
                             <input
-id={`isPublished-${b.id}`}
+                              id={`isPublished-${b.id}`}
                               name="isPublished"
                               type="checkbox"
                               value="true"
@@ -231,7 +232,7 @@ id={`isPublished-${b.id}`}
                               className="size-4 rounded border-foreground/20"
                             />
                             <label
-htmlFor={`isPublished-${b.id}`}
+                              htmlFor={`isPublished-${b.id}`}
                               className="text-sm font-medium"
                             >
                               Published
@@ -251,13 +252,13 @@ htmlFor={`isPublished-${b.id}`}
                     <Button
                       variant="destructive"
                       size="sm"
-onClick={() => setConfirmDeleteId(b.id)}
+                      onClick={() => setConfirmDeleteId(b.id)}
                       disabled={pending}
                     >
                       Delete
                     </Button>
                   </div>
-{confirmDeleteId === b.id && (
+                  {confirmDeleteId === b.id && (
                     <Alert variant="destructive" className="mt-2">
                       <AlertTitle>Delete blog?</AlertTitle>
                       <AlertDescription>
@@ -276,9 +277,7 @@ onClick={() => setConfirmDeleteId(b.id)}
                               variant="destructive"
                               size="sm"
                               onClick={() =>
-                                startTransition(() =>
-handleDelete(b.id)
-                                )
+                                startTransition(() => handleDelete(b.id))
                               }
                             >
                               {pending ? "Deleting..." : "Confirm"}
