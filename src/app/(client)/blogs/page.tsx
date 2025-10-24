@@ -1,8 +1,22 @@
 import React from "react";
+import type { Metadata } from "next";
 import { listPublishedBlogsPaginated } from "@/server/blog";
 import { BlogManager, BlogsHeader } from "@/components/blogs";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Blogs | Forgenest Services",
+  description:
+    "Read insights on software development, web, mobile, AI, design, and digital transformation from Forgenest Services.",
+  alternates: { canonical: "https://www.forgenestservices.com.np/blogs" },
+  openGraph: {
+    title: "Blogs | Forgenest Services",
+    description:
+      "Insights on software development, web, mobile, AI, design, and digital transformation.",
+    url: "https://www.forgenestservices.com.np/blogs",
+  },
+};
 
 export default async function BlogsPage({
   searchParams,

@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import { ShareButtons } from "@/components/blogs";
+import { generateBlogPostSchema } from "@/lib/constants/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -20,19 +21,34 @@ export async function generateMetadata({
   const blog = await getPublishedBlogBySlug(params.slug);
   if (!blog) return { title: "Blog post not found" };
 
+  const siteUrl = "https://www.forgenestservices.com.np";
+  const canonical = `${siteUrl}/blogs/${blog.slug}`;
+
   return {
     title: blog.metaTitle || blog.title,
     description: blog.metaDescription || blog.excerpt,
     keywords: blog.keywords?.join(", "),
     authors: [{ name: blog.author }],
+    alternates: { canonical },
     openGraph: {
       title: blog.metaTitle || blog.title,
       description: blog.metaDescription || blog.excerpt,
-      images: blog.image ? [blog.image] : undefined,
+      url: canonical,
+      images: blog.image
+        ? [
+            {
+              url: blog.image,
+              width: 1200,
+              height: 630,
+              alt: blog.title,
+            },
+          ]
+        : undefined,
       type: "article",
       publishedTime: blog.createdAt,
       modifiedTime: blog.updatedAt,
       authors: [blog.author],
+      tags: blog.tags,
     },
     twitter: {
       card: "summary_large_image",
@@ -55,6 +71,20 @@ export default async function BlogDetailPage({
   const wordCount = blog.content.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / 200);
 
+  // Prepare JSON-LD
+  const structuredData = generateBlogPostSchema({
+    title: blog.metaTitle || blog.title,
+    description: blog.metaDescription || blog.excerpt,
+    content: blog.content,
+    author: blog.author,
+    publishedAt: new Date(blog.createdAt).toISOString(),
+    image: blog.image || "https://www.forgenestservices.com.np/og-image.jpg",
+    url: `https://www.forgenestservices.com.np/blogs/${blog.slug}`,
+    category: blog.tags?.[0] || "Technology",
+    tags: blog.tags || [],
+    readTime: readingTime,
+  });
+
   // Format date
   const publishedDate = new Date(blog.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -70,6 +100,10 @@ export default async function BlogDetailPage({
 
   return (
     <article className="bg-background text-foreground py-20 md:py-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Content Container */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section with Featured Image */}
@@ -96,7 +130,7 @@ export default async function BlogDetailPage({
                 {blog.tags.map((tag: string, index: number) => (
                   <Link
                     key={index}
-                    href={`/blog?tag=${encodeURIComponent(tag)}`}
+                    href={`/blogs?tag=${encodeURIComponent(tag)}`}
                     className="inline-flex items-center gap-1 px-3 py-1 text-xs md:text-sm font-medium bg-foreground/10 text-foreground rounded-full hover:bg-foreground hover:text-background transition-all duration-300"
                   >
                     <Tag className="w-3 h-3" />

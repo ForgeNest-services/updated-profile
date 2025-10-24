@@ -117,6 +117,15 @@ export async function getPublishedBlogBySlug(slug: string): Promise<Blog | null>
   return (doc as Blog) || null;
 }
 
+export async function listAllPublishedBlogSlugs(): Promise<{ slug: string; updatedAt: Date }[]> {
+  const col = await getCollection();
+  const docs = await col
+    .find({ isPublished: true }, { projection: { slug: 1, updatedAt: 1 } })
+    .sort({ updatedAt: -1 })
+    .toArray();
+  return docs.map((d: any) => ({ slug: d.slug, updatedAt: d.updatedAt }));
+}
+
 export async function createBlogAction(formData: FormData) {
   const title = String(formData.get("title") || "").trim();
   const excerpt = String(formData.get("excerpt") || "").trim();

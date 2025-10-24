@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 interface TitleAnimationProps {
@@ -87,9 +87,9 @@ export default function TitleAnimation({
       return splitTextIntoWords(children);
     }
 
-    if (React.isValidElement(children) && children.type === "span") {
+    if (React.isValidElement(children) && (children as React.ReactElement).type === "span") {
       // If it's already a span with text, split it
-      const text = children.props.children;
+      const text = (children as any).props?.children as unknown;
       if (typeof text === "string") {
         return splitTextIntoWords(text);
       }

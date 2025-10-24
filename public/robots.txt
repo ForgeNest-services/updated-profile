@@ -1,0 +1,22 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /login
+
+# GPTBot
+User-agent: GPTBot
+Disallow: /
+
+# Google-Extended
+User-agent: Google-Extended
+Disallow: /
+
+# Host
+Host: https://www.forgenestservices.com.np
+
+# Sitemaps
+Sitemap: https://www.forgenestservices.com.np/sitemap.xml

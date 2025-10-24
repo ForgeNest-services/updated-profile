@@ -1,16 +1,26 @@
 import type { Metadata } from "next";
-import { Oswald } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import localFont from "next/font/local";
 
-const oswald = Oswald({
+const oswald = localFont({
+  src: "../../../public/fonts/oswald/Oswald-VariableFont_wght.ttf",
   variable: "--font-oswald",
-  subsets: ["latin"],
+  weight: "200 700",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Admin Dashboard - Forgenest Services",
   description: "Admin dashboard for managing website content",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
 };
 
 export default function AdminLayout({

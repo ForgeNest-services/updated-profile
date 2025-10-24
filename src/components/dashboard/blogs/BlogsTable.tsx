@@ -88,7 +88,7 @@ key={b.id}
                 )}
               </td>
               <td className="px-4 py-2">
-                <Link href={`/blog/${b.slug}`} className="hover:underline">
+                <Link href={`/blogs/${b.slug}`} className="hover:underline">
                   {b.title}
                 </Link>
               </td>

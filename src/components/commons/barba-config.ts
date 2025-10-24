@@ -55,8 +55,8 @@ export const initBarba = () => {
           },
           {
             name: "home-transition",
-            from: { namespace: ["home"] },
-            to: { namespace: ["about"] },
+            from: "home",
+            to: "about",
             leave(data) {
               return gsap.timeline().to(data.current.container, {
                 opacity: 0,
@@ -81,8 +81,8 @@ export const initBarba = () => {
           },
           {
             name: "about-transition",
-            from: { namespace: ["about"] },
-            to: { namespace: ["home"] },
+            from: "about",
+            to: "home",
             leave(data) {
               return gsap.timeline().to(data.current.container, {
                 opacity: 0,
