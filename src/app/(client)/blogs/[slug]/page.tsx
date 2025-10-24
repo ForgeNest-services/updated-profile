@@ -11,14 +11,17 @@ import remarkBreaks from "remark-breaks";
 import { ShareButtons } from "@/components/blogs";
 import { generateBlogPostSchema } from "@/lib/constants/seo";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
+
+export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const blog = await getPublishedBlogBySlug(params.slug);
+  const { slug } = await params;
+  const blog = await getPublishedBlogBySlug(slug);
   if (!blog) return { title: "Blog post not found" };
 
   const siteUrl = "https://www.forgenestservices.com.np";
@@ -62,9 +65,10 @@ export async function generateMetadata({
 export default async function BlogDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const blog = await getPublishedBlogBySlug(params.slug);
+  const { slug } = await params;
+  const blog = await getPublishedBlogBySlug(slug);
   if (!blog) notFound();
 
   // Calculate reading time (average 200 words per minute)
