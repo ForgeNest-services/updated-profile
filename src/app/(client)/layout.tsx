@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "../globals.css";
-import { BarbaWrapper, Navbar, SmoothScroll } from "@/components/commons";
+import { Navbar, SmoothScroll } from "@/components/commons";
 import { Footer } from "@/components/home";
 
 const oswald = localFont({
@@ -181,10 +181,8 @@ export default function RootLayout({
       <body className={`${oswald.variable} font-sans antialiased`}>
         <Navbar />
         <SmoothScroll>
-          <BarbaWrapper>
-            {children}
-            <Footer />
-          </BarbaWrapper>
+          {children}
+          <Footer />
         </SmoothScroll>
       </body>
     </html>

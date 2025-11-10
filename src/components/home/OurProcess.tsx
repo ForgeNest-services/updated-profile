@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TitleAnimation from "../ui/TitleAnimation";
 import TextAnimation from "../ui/TextAnimation";
-import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,9 +11,6 @@ export default function OurProcess() {
   const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLDivElement[]>([]);
-
-  // Handle Barba page transitions
-  useBarbaTransition();
 
   const processSteps = [
     {

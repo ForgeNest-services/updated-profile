@@ -39,22 +39,10 @@ export default function OptimizedVideo({
       observer.observe(containerRef.current);
     }
 
-    // Handle Barba transitions - reset when leaving page
-    const handleBarbaAfter = () => {
-      setIsVisible(false);
-      setIsLoaded(false);
-      if (videoRef.current) {
-        videoRef.current.pause();
-      }
-    };
-
-    window.addEventListener("barba:after", handleBarbaAfter);
-
     return () => {
       if (containerRef.current) {
         observer.unobserve(containerRef.current);
       }
-      window.removeEventListener("barba:after", handleBarbaAfter);
     };
   }, []);
 

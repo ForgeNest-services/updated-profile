@@ -9,7 +9,6 @@ import { avatars } from "@/lib/constants/avatars";
 import { SpinningText } from "@/components/ui/spinning-text";
 import TitleAnimation from "@/components/ui/TitleAnimation";
 import TextAnimation from "@/components/ui/TextAnimation";
-import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -17,9 +16,6 @@ export default function Hero() {
   const lottieRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const circlesRef = useRef<HTMLDivElement[]>([]);
-
-  // Handle Barba page transitions
-  useBarbaTransition();
 
   useEffect(() => {
     const ctx = gsap.context(() => {

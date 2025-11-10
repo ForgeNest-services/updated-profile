@@ -9,7 +9,6 @@ import { listPublishedBlogsPaginated } from "@/server/blog";
 import BlogCard from "@/components/blogs/BlogCard";
 import TitleAnimation from "../ui/TitleAnimation";
 import TextAnimation from "../ui/TextAnimation";
-import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,9 +17,6 @@ export default function FeaturedBlogs() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const [blogs, setBlogs] = useState<BlogRow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Handle Barba page transitions
-  useBarbaTransition();
 
   useEffect(() => {
     const fetchBlogs = async () => {

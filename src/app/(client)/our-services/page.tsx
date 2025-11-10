@@ -6,7 +6,6 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { servicesData } from "@/lib/constants/services";
 import OptimizedVideo from "@/components/ui/OptimizedVideo";
-import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,9 +13,6 @@ export default function ServicesPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement[]>([]);
   const ctaRef = useRef<HTMLDivElement>(null);
-
-  // Handle Barba page transitions
-  useBarbaTransition();
 
   useEffect(() => {
     const ctx = gsap.context(() => {

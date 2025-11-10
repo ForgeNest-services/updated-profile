@@ -7,16 +7,12 @@ import { ArrowRight } from "lucide-react";
 import TitleAnimation from "../ui/TitleAnimation";
 import TextAnimation from "../ui/TextAnimation";
 import { DottedMap } from "../ui/dotted-map";
-import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  // Handle Barba page transitions
-  useBarbaTransition();
 
   useEffect(() => {
     const ctx = gsap.context(() => {

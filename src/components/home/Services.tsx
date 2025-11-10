@@ -7,16 +7,12 @@ import { ArrowRight, Check } from "lucide-react";
 import TitleAnimation from "../ui/TitleAnimation";
 import TextAnimation from "../ui/TextAnimation";
 import OptimizedVideo from "../ui/OptimizedVideo";
-import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const servicesRef = useRef<HTMLDivElement[]>([]);
-
-  // Handle Barba page transitions
-  useBarbaTransition();
 
   const services = [
     {
