@@ -63,7 +63,10 @@ export default function About() {
       <div className="relative max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="flex justify-center items-center flex-col mb-12 md:mb-16">
-          <TitleAnimation className="text-2xl text-center md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+          <TitleAnimation
+            as="h2"
+            className="text-2xl text-center md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight"
+          >
             Who We Are
           </TitleAnimation>
           <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />

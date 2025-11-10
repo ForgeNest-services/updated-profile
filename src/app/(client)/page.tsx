@@ -6,19 +6,20 @@ import {
   Newsletter,
   Services,
   FeaturedBlogs,
+  FAQ,
 } from "@/components/home";
 import {
   generateLocalBusinessSchema,
   generateWebsiteSchema,
+  generateBreadcrumbSchema,
+  generateFAQSchema,
 } from "@/lib/constants/seo";
+import { homeFAQs } from "@/lib/constants/faqs";
 
-// ISR - Revalidate every 1 hour
 export const revalidate = 3600;
 
-// Optimize dynamic rendering
 export const dynamic = "force-static";
 
-// SEO Metadata
 export const metadata: Metadata = {
   title: "Forgenest Services - Leading IT Solutions Provider in Nepal",
   description:
@@ -79,6 +80,10 @@ export const metadata: Metadata = {
 export default function Home() {
   const websiteSchema = generateWebsiteSchema();
   const localBusinessSchema = generateLocalBusinessSchema();
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.forgenestservices.com.np" },
+  ]);
+  const faqSchema = generateFAQSchema(homeFAQs);
   return (
     <>
       {/* Structured Data */}
@@ -94,12 +99,29 @@ export default function Home() {
           __html: JSON.stringify(localBusinessSchema),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
       <main className="bg-background text-foreground font-oswald space-y-20 md:space-y-32">
         <Hero />
         <About />
         <Services />
         <OurProcess />
         <FeaturedBlogs />
+        <FAQ
+          items={homeFAQs}
+          title="Frequently Asked Questions"
+          description="Everything you need to know about Forgenest Services"
+        />
         <Newsletter />
       </main>
     </>

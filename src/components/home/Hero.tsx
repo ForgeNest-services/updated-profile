@@ -207,7 +207,10 @@ export default function Hero() {
       <div className="bg-[#f8f8f8] border-2 border-foreground/30 relative max-w-screen-2xl mx-auto px-4 md:px-12 lg:px-20 py-4 lg:py-12 rounded-3xl shadow-2xl flex flex-col-reverse md:flex-row gap-y-8 md:gap-x-8 lg:gap-x-12 justify-start item-start ">
         <div className="max-w-lg space-y-6">
           {/* Animated Title */}
-          <TitleAnimation className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+          <TitleAnimation
+            as="h1"
+            className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight"
+          >
             We Build What You Imagine.
           </TitleAnimation>
 

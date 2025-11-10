@@ -2,6 +2,8 @@ import React from "react";
 import type { Metadata } from "next";
 import { listPublishedBlogsPaginated } from "@/server/blog";
 import { BlogManager, BlogsHeader } from "@/components/blogs";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import { generateBreadcrumbSchema } from "@/lib/constants/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -33,18 +35,38 @@ export default async function BlogsPage({
     q,
   });
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.forgenestservices.com.np" },
+    { name: "Blogs", url: "https://www.forgenestservices.com.np/blogs" },
+  ]);
+
   return (
-    <main className="bg-background text-foreground py-20 md:py-32">
-      <div className="max-w-screen-4xl mx-auto">
-        <BlogsHeader />
-        <BlogManager
-          items={items}
-          total={total}
-          page={page}
-          pageSize={pageSize}
-          q={q}
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+      <main className="bg-background text-foreground">
+        <Breadcrumb
+          items={[
+            { label: "Home", url: "/" },
+            { label: "Blogs", url: "/blogs", current: true },
+          ]}
         />
-      </div>
-    </main>
+        <div className="max-w-screen-4xl mx-auto">
+          <BlogsHeader />
+          <BlogManager
+            items={items}
+            total={total}
+            page={page}
+            pageSize={pageSize}
+            q={q}
+          />
+        </div>
+      </main>
+    </>
   );
 }

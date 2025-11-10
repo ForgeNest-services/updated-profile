@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { ContactManager } from "@/components/contact";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import React from "react";
-import { generateLocalBusinessSchema } from "@/lib/constants/seo";
+import { generateLocalBusinessSchema, generateBreadcrumbSchema } from "@/lib/constants/seo";
 
 export const metadata: Metadata = {
   title: "Contact Us | Forgenest Services",
@@ -54,6 +55,10 @@ export const metadata: Metadata = {
 
 export default function ContactUsPage() {
   const localBusinessSchema = generateLocalBusinessSchema();
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.forgenestservices.com.np" },
+    { name: "Contact Us", url: "https://www.forgenestservices.com.np/contact-us" },
+  ]);
   return (
     <>
       {/* Structured Data */}
@@ -63,7 +68,19 @@ export default function ContactUsPage() {
           __html: JSON.stringify(localBusinessSchema),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <main className="bg-background text-foreground font-oswald max-w-screen-4xl mx-auto space-y-6">
+        <Breadcrumb
+          items={[
+            { label: "Home", url: "/" },
+            { label: "Contact Us", url: "/contact-us", current: true },
+          ]}
+        />
         <ContactManager />
       </main>
     </>

@@ -6,7 +6,14 @@ import {
   AboutUsTeam,
   AboutUsValues,
 } from "@/components/about";
-import { generateLocalBusinessSchema } from "@/lib/constants/seo";
+import FAQ from "@/components/home/FAQ";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import {
+  generateLocalBusinessSchema,
+  generateFAQSchema,
+  generateBreadcrumbSchema,
+} from "@/lib/constants/seo";
+import { aboutFAQs } from "@/lib/constants/faqs";
 
 export const metadata: Metadata = {
   title: "About Us | Forgenest Services",
@@ -61,6 +68,11 @@ export const metadata: Metadata = {
 
 export default function AboutUsPage() {
   const localBusinessSchema = generateLocalBusinessSchema();
+  const faqSchema = generateFAQSchema(aboutFAQs);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.forgenestservices.com.np" },
+    { name: "About Us", url: "https://www.forgenestservices.com.np/about-us" },
+  ]);
   return (
     <>
       {/* Structured Data */}
@@ -70,11 +82,34 @@ export default function AboutUsPage() {
           __html: JSON.stringify(localBusinessSchema),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <main className="bg-background text-foreground font-oswald max-w-screen-4xl mx-auto space-y-6">
+        <Breadcrumb
+          items={[
+            { label: "Home", url: "/" },
+            { label: "About Us", url: "/about-us", current: true },
+          ]}
+        />
         <AboutUsHero />
         <AboutUsStory />
         {/* <AboutUsTeam /> */}
         <AboutUsValues />
+        <FAQ
+          items={aboutFAQs}
+          title="Frequently Asked Questions"
+          description="Common questions about our company and how we work"
+        />
       </main>
     </>
   );

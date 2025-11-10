@@ -5,7 +5,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { servicesData } from "@/lib/constants/services";
+import { servicesFAQs } from "@/lib/constants/faqs";
 import OptimizedVideo from "@/components/ui/OptimizedVideo";
+import FAQ from "@/components/home/FAQ";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,6 +110,14 @@ export default function ServicesPageClient() {
 
   return (
     <main className="bg-background text-foreground">
+      {/* Breadcrumb */}
+      <Breadcrumb
+        items={[
+          { label: "Home", url: "/" },
+          { label: "Our Services", url: "/our-services", current: true },
+        ]}
+      />
+
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -198,6 +209,13 @@ export default function ServicesPageClient() {
           );
         })}
       </div>
+
+      {/* FAQ Section */}
+      <FAQ
+        items={servicesFAQs}
+        title="Frequently Asked Questions"
+        description="Get answers to common questions about our services and process"
+      />
 
       {/* CTA Section */}
       <section className="py-20 md:py-32">

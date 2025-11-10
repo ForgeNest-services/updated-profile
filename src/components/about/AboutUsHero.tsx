@@ -60,7 +60,10 @@ export default function AboutUsHero() {
           {/* Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <TitleAnimation className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+              <TitleAnimation
+                as="h1"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-oswald font-normal text-foreground tracking-tighter leading-tight"
+              >
                 About Forgenest
               </TitleAnimation>
               <div className="h-1 w-20 sm:w-24 md:w-28 lg:w-32 bg-foreground rounded-full" />

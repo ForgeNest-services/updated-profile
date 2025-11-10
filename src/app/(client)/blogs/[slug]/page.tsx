@@ -2,6 +2,7 @@ import React from "react";
 import { getPublishedBlogBySlug } from "@/server/blog";
 import { notFound } from "next/navigation";
 import TitleAnimation from "@/components/ui/TitleAnimation";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Clock, Tag, User } from "lucide-react";
@@ -9,7 +10,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import { ShareButtons } from "@/components/blogs";
-import { generateBlogPostSchema } from "@/lib/constants/seo";
+import { generateBlogPostSchema, generateBreadcrumbSchema } from "@/lib/constants/seo";
 
 // export const dynamic = "force-dynamic";
 
@@ -89,6 +90,12 @@ export default async function BlogDetailPage({
     readTime: readingTime,
   });
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.forgenestservices.com.np" },
+    { name: "Blogs", url: "https://www.forgenestservices.com.np/blogs" },
+    { name: blog.title, url: `https://www.forgenestservices.com.np/blogs/${blog.slug}` },
+  ]);
+
   // Format date
   const publishedDate = new Date(blog.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -107,6 +114,18 @@ export default async function BlogDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {/* Breadcrumb */}
+      <Breadcrumb
+        items={[
+          { label: "Home", url: "/" },
+          { label: "Blogs", url: "/blogs" },
+          { label: blog.title, url: `/blogs/${blog.slug}`, current: true },
+        ]}
       />
       {/* Content Container */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -145,7 +164,10 @@ export default async function BlogDetailPage({
             )}
 
             {/* Title */}
-            <TitleAnimation className="text-2xl md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight mb-6">
+            <TitleAnimation
+              as="h1"
+              className="text-2xl md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight mb-6"
+            >
               {blog.title}
             </TitleAnimation>
 

@@ -57,7 +57,7 @@ export default function Newsletter() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-background text-foreground py-20 md:py-32 overflow-hidden"
+      className="relative bg-background text-foreground pb-20 md:pb-32 overflow-hidden"
     >
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

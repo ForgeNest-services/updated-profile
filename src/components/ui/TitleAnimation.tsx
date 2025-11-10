@@ -10,6 +10,7 @@ interface TitleAnimationProps {
   duration?: number;
   trigger?: string;
   start?: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div";
 }
 
 export default function TitleAnimation({
@@ -20,8 +21,9 @@ export default function TitleAnimation({
   duration = 1.2,
   trigger = "top 80%",
   start = "top 80%",
+  as = "div",
 }: TitleAnimationProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLHeadingElement | HTMLDivElement>(null);
   const wordsRef = useRef<HTMLSpanElement[]>([]);
 
   useEffect(() => {
@@ -115,9 +117,16 @@ export default function TitleAnimation({
     });
   };
 
-  return (
-    <div ref={containerRef} className={className}>
-      {renderContent()}
-    </div>
+  // Map heading level to element
+  const HeadingElement = as as keyof JSX.IntrinsicElements;
+  const HeadingTag = as === "div" ? "div" : (as as keyof React.JSX.IntrinsicElements);
+
+  return React.createElement(
+    HeadingTag,
+    {
+      ref: containerRef,
+      className: className,
+    },
+    renderContent()
   );
 }

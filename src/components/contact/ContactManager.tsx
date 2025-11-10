@@ -9,8 +9,11 @@ export default function ContactManager() {
     <section className="max-w-screen-2xl mx-auto px-4 md:px-8 py-20 lg:py-32">
       {/* Title */}
       <div className="text-center space-y-6">
-        <TitleAnimation className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
-          Let’s build something exceptional
+        <TitleAnimation
+          as="h1"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-oswald font-normal text-foreground tracking-tighter leading-tight"
+        >
+          Let's build something exceptional
         </TitleAnimation>
         <div className="h-1 w-20 sm:w-24 md:w-28 lg:w-32 bg-foreground rounded-full mx-auto" />
         <TextAnimation

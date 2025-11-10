@@ -92,7 +92,10 @@ export default function AboutUsValues() {
       <div className="relative w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <TitleAnimation className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+          <TitleAnimation
+            as="h2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight"
+          >
             Our Values
           </TitleAnimation>
           <div className="h-1 w-20 sm:w-24 md:w-28 lg:w-32 bg-foreground mx-auto rounded-full mt-6" />

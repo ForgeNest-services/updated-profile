@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import {
   generateLocalBusinessSchema,
   generateServiceSchema,
+  generateFAQSchema,
+  generateBreadcrumbSchema,
 } from "@/lib/constants/seo";
 import { servicesData } from "@/lib/constants/services";
+import { servicesFAQs } from "@/lib/constants/faqs";
 import ServicesPageClient from "@/components/pages/ServicesPageClient";
 
 export const metadata: Metadata = {
@@ -67,6 +70,11 @@ export default function ServicesPage() {
       category: "IT Services",
     })
   );
+  const faqSchema = generateFAQSchema(servicesFAQs);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://www.forgenestservices.com.np" },
+    { name: "Our Services", url: "https://www.forgenestservices.com.np/our-services" },
+  ]);
 
   return (
     <>
@@ -86,6 +94,18 @@ export default function ServicesPage() {
           }}
         />
       ))}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
       <ServicesPageClient />
     </>
   );
