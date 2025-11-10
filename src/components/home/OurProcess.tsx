@@ -2,147 +2,99 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Search,
-  Lightbulb,
-  Code,
-  Palette,
-  Rocket,
-  CheckCircle,
-} from "lucide-react";
 import TitleAnimation from "../ui/TitleAnimation";
 import TextAnimation from "../ui/TextAnimation";
+import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function OurProcess() {
   const sectionRef = useRef<HTMLElement>(null);
-  const snakeRef = useRef<SVGPathElement>(null);
-  const stepsRef = useRef<HTMLDivElement[]>([]);
-  const overlayRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const itemsRef = useRef<HTMLDivElement[]>([]);
+
+  // Handle Barba page transitions
+  useBarbaTransition();
 
   const processSteps = [
     {
-      icon: <Search className="w-8 h-8" />,
       title: "Discovery",
       description:
-        "We dive deep into your business goals, target audience, and project requirements to create a solid foundation.",
-      color: "from-blue-500 to-blue-600",
+        "Understand your goals, challenges, and vision for the project.",
+      step: "Step 01",
     },
     {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: "Strategy",
+      title: "Planning",
       description:
-        "Our team crafts a comprehensive strategy that aligns with your vision and market opportunities.",
-      color: "from-yellow-500 to-orange-500",
+        "Create a clear roadmap and technical approach tailored to your needs.",
+      step: "Step 02",
     },
     {
-      icon: <Palette className="w-8 h-8" />,
       title: "Design",
       description:
-        "We create stunning visual experiences that captivate your audience and reflect your brand identity.",
-      color: "from-purple-500 to-pink-500",
+        "Build user-friendly designs that align with your brand and goals.",
+      step: "Step 03",
     },
     {
-      icon: <Code className="w-8 h-8" />,
       title: "Development",
       description:
-        "Our developers bring designs to life with clean, efficient code and cutting-edge technologies.",
-      color: "from-green-500 to-teal-500",
+        "Develop clean, efficient code with regular updates and transparency.",
+      step: "Step 04",
     },
     {
-      icon: <Rocket className="w-8 h-8" />,
       title: "Launch",
       description:
-        "We ensure a smooth deployment and provide ongoing support to keep your project running perfectly.",
-      color: "from-red-500 to-pink-500",
+        "Deploy your project smoothly with thorough testing and support.",
+      step: "Step 05",
     },
     {
-      icon: <CheckCircle className="w-8 h-8" />,
-      title: "Optimize",
+      title: "Support",
       description:
-        "Continuous monitoring and optimization to ensure your project delivers maximum value and performance.",
-      color: "from-indigo-500 to-blue-500",
+        "Ongoing maintenance, updates, and optimization for success.",
+      step: "Step 06",
     },
   ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax background and overlay opacity
-      if (sectionRef.current) {
-        gsap.to(sectionRef.current, {
-          backgroundPositionY: "30%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-      }
-
-      if (overlayRef.current) {
+      // Timeline line animation
+      if (timelineRef.current) {
         gsap.fromTo(
-          overlayRef.current,
-          { opacity: 0.6 },
+          timelineRef.current,
+          { scaleY: 0, opacity: 0 },
           {
-            opacity: 0.3,
-            ease: "none",
+            scaleY: 1,
+            opacity: 1,
+            duration: 1.5,
+            ease: "power3.out",
             scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1,
+              trigger: timelineRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
             },
           }
         );
       }
-      // Animate snake path drawing
-      if (snakeRef.current) {
-        const pathLength = snakeRef.current.getTotalLength();
-        snakeRef.current.style.strokeDasharray = pathLength.toString();
-        snakeRef.current.style.strokeDashoffset = pathLength.toString();
 
-        gsap.to(snakeRef.current, {
-          strokeDashoffset: 0,
-          duration: 3,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            scrub: 1,
-          },
-        });
-      }
-
-      // Animate steps appearing
-      stepsRef.current.forEach((step, index) => {
-        if (step) {
-          gsap.fromTo(
-            step,
-            {
-              opacity: 0,
-              y: 50,
-              scale: 0.8,
+      // Timeline items animation - all at once
+      const validItems = itemsRef.current.filter((el) => el !== null);
+      if (validItems.length > 0) {
+        gsap.fromTo(
+          validItems,
+          { x: -50, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: timelineRef.current,
+              start: "top 70%",
+              toggleActions: "play none none none",
             },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.8,
-              ease: "back.out(1.7)",
-              scrollTrigger: {
-                trigger: step,
-                start: "top 85%",
-                end: "top 15%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        }
-      });
+          }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -151,99 +103,70 @@ export default function OurProcess() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full px-4 sm:px-6 lg:px-8 overflow-hidden"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2000&auto=format&fit=crop')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
+      className="relative bg-background text-foreground"
     >
-      <div
-        ref={overlayRef}
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-none rounded-2xl"
-      />
-      <div className="relative z-10 max-w-screen-2xl mx-auto py-10">
-        <div className="backdrop-blur-xl bg-white/10 py-10 rounded-3xl border space-y-6">
-          {/* Header */}
-          <div className="text-center space-y-4">
-            <TitleAnimation className="text-2xl text-background md:text-4xl lg:text-6xl font-oswald font-normal tracking-tighter leading-tight mb-4">
-              Our Process
-            </TitleAnimation>
-            <div className="w-20 lg:w-40 h-1 bg-background mx-auto" />
-            <TextAnimation className="text-sm md:text-xl text-neutral-300 max-w-3xl mx-auto px-2">
-              From concept to completion, we follow a proven methodology that
-              ensures exceptional results and seamless collaboration.
-            </TextAnimation>
-          </div>
+      <div className="relative w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-16 md:mb-20">
+          <TitleAnimation className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+            Our Process
+          </TitleAnimation>
+          <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
+          <TextAnimation
+            className="max-w-3xl text-sm md:text-lg text-foreground/80 leading-relaxed mt-8"
+            animationType="fadeUp"
+            delay={0.2}
+          >
+            From initial conversation to final delivery and beyond, here's how
+            we bring your vision to life.
+          </TextAnimation>
+        </div>
 
-          {/* Process Steps */}
-          <div className="relative max-w-4xl mx-auto">
-            {/* Snake SVG Path */}
-            <svg
-              className="absolute left-8 top-0 w-2 h-full"
-              viewBox="0 0 4 1000"
-              preserveAspectRatio="none"
-            >
-              <path
-                ref={snakeRef}
-                d="M2,50 Q2,200 2,200 T2,400 T2,600 T2,800 T2,950"
-                stroke="url(#gradient)"
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-              />
-              <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#3B82F6" />
-                  <stop offset="50%" stopColor="#8B5CF6" />
-                  <stop offset="100%" stopColor="#EC4899" />
-                </linearGradient>
-              </defs>
-            </svg>
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline Line */}
+          <div
+            ref={timelineRef}
+            className="absolute left-8 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-foreground/20 origin-top"
+          />
 
-            {/* Steps */}
-            <div className="space-y-6 md:space-y-10 lg:space-y-14">
-              {processSteps.map((step, index) => (
+          {/* Timeline Items */}
+          <div className="space-y-12 md:space-y-16">
+            {processSteps.map((item, index) => (
+              <div
+                key={index}
+                ref={(el) => {
+                  if (el) itemsRef.current[index] = el;
+                }}
+                className={`relative flex items-center ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-4 h-4 bg-foreground rounded-full z-10 border-4 border-background" />
+
+                {/* Content */}
                 <div
-                  key={index}
-                  ref={(el) => {
-                    if (el) stepsRef.current[index] = el;
-                  }}
-                  className="flex items-center flex-col md:flex-row gap-8 border border-white/20 p-6 rounded-2xl shadow-lg"
+                  className={`ml-16 md:ml-0 md:w-1/2 ${
+                    index % 2 === 0 ? "md:pr-8" : "md:pl-8"
+                  }`}
                 >
-                  {/* Step Number & Icon */}
-                  <div className="flex-shrink-0 relative z-10">
-                    <div
-                      className={`w-16 h-16 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-white shadow-lg`}
-                    >
-                      {step.icon}
+                  <div className="bg-background border border-foreground/10 rounded-2xl p-6 md:p-8 hover:border-foreground/20 transition-all duration-300">
+                    <div className="mb-4">
+                      <span className="px-3 py-1 bg-foreground/10 text-foreground text-sm font-medium rounded-full">
+                        {item.step}
+                      </span>
                     </div>
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs font-bold">
-                      {index + 1}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 text-center md:text-start">
-                    <p className="text-sm md:text-xl text-neutral-300 leading-relaxed">
-                      {step.description}
+                    <h3 className="text-xl md:text-2xl font-oswald font-normal text-foreground mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-foreground/70 leading-relaxed">
+                      {item.description}
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom CTA */}
-          <div className="text-center mt-16">
-            <TextAnimation className="text-lg text-background/80 mb-6">
-              Ready to start your project?
-            </TextAnimation>
-            <button className="bg-foreground text-background px-8 py-4 rounded-full font-oswald text-lg uppercase hover:opacity-90 transition-opacity duration-300">
-              Let's Begin
-            </button>
+              </div>
+            ))}
           </div>
         </div>
       </div>

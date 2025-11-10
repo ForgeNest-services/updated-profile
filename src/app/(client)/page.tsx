@@ -1,16 +1,22 @@
 import {
   About,
   Hero,
-  WhatWeDo,
   OurProcess,
-  Expertise,
   Newsletter,
+  Services,
+  FeaturedBlogs,
 } from "@/components/home";
 import BarbaWrapper from "@/components/commons/Barba";
 import {
   generateLocalBusinessSchema,
   generateWebsiteSchema,
 } from "@/lib/constants/seo";
+
+// ISR - Revalidate every 1 hour
+export const revalidate = 3600;
+
+// Optimize dynamic rendering
+export const dynamic = "force-static";
 
 export default function Home() {
   const websiteSchema = generateWebsiteSchema();
@@ -31,12 +37,12 @@ export default function Home() {
         }}
       />
       <BarbaWrapper namespace="home">
-        <main className="bg-background text-foreground font-oswald max-w-screen-4xl mx-auto space-y-6">
+        <main className="bg-background text-foreground font-oswald space-y-20 md:space-y-32">
           <Hero />
           <About />
-          <WhatWeDo />
+          <Services />
           <OurProcess />
-          <Expertise />
+          <FeaturedBlogs />
           <Newsletter />
         </main>
       </BarbaWrapper>

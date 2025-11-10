@@ -1,92 +1,44 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import { ArrowRight, Lightbulb, Code, Target } from "lucide-react";
-import Scene3D from "../ui/Scene3D";
-import ErrorBoundary from "../ui/ErrorBoundary";
+import { ArrowRight } from "lucide-react";
 import TitleAnimation from "../ui/TitleAnimation";
 import TextAnimation from "../ui/TextAnimation";
+import { DottedMap } from "../ui/dotted-map";
+import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
-  const statsRef = useRef<HTMLDivElement[]>([]);
 
-  const [stats, setStats] = useState([
-    { number: 0, target: 50, label: "Projects Delivered" },
-    { number: 0, target: 15, label: "Happy Clients" },
-    { number: 0, target: 5, label: "Years Experience" },
-  ]);
-
-  const [scrollProgress, setScrollProgress] = useState(0);
+  // Handle Barba page transitions
+  useBarbaTransition();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        onUpdate: (self) => {
-          setScrollProgress(self.progress);
-        },
-      });
-
-      const validCards = cardsRef.current.filter((el) => el !== null);
-      if (validCards.length > 0) {
+      if (contentRef.current) {
         gsap.fromTo(
-          validCards,
+          contentRef.current,
           {
-            y: 100,
+            y: 40,
             opacity: 0,
           },
           {
             y: 0,
             opacity: 1,
-            stagger: 0.2,
-            duration: 1,
+            duration: 0.8,
             ease: "power3.out",
             scrollTrigger: {
               trigger: contentRef.current,
               start: "top 70%",
-              end: "top 30%",
               toggleActions: "play none none reverse",
             },
           }
         );
-      }
-
-      const validStats = statsRef.current.filter((el) => el !== null);
-      if (validStats.length > 0) {
-        ScrollTrigger.create({
-          trigger: validStats[0],
-          start: "top 80%",
-          onEnter: () => {
-            stats.forEach((stat, index) => {
-              const obj = { value: 0 };
-              gsap.to(obj, {
-                value: stat.target,
-                duration: 2,
-                ease: "power2.out",
-                onUpdate: () => {
-                  setStats((prev) => {
-                    const newStats = [...prev];
-                    newStats[index] = {
-                      ...newStats[index],
-                      number: Math.floor(obj.value),
-                    };
-                    return newStats;
-                  });
-                },
-              });
-            });
-          },
-        });
       }
     }, sectionRef);
 
@@ -96,79 +48,85 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="bg-background text-foreground overflow-hidden w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4"
+      className="relative bg-background text-foreground overflow-hidden w-full"
     >
-      {/* Sticky Title - Left Side */}
-      <div className="flex justify-start items-start flex-col">
-        <TitleAnimation className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
-          OUR VISION
-        </TitleAnimation>
-        <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
-      </div>
-      <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-start">
-        {/* 3D Building Background - Full Height Canvas */}
-        <div className="hidden md:block lg:col-span-1 opacity-50">
-          <ErrorBoundary>
-            <Scene3D scrollProgress={scrollProgress} modelHeight={128} />
-          </ErrorBoundary>
+      {/* DottedMap Background */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none overflow-hidden">
+        <div className="absolute w-full h-full">
+          <DottedMap
+            width={1200}
+            height={800}
+            mapSamples={5000}
+            dotColor="currentColor"
+            dotRadius={2}
+            className="w-full h-full"
+          />
         </div>
-        {/* Scrolling Content - Right Side (2 columns) */}
+      </div>
+
+      <div className="relative max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Title */}
+        <div className="flex justify-center items-center flex-col mb-12 md:mb-16">
+          <TitleAnimation className="text-2xl text-center md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
+            Who We Are
+          </TitleAnimation>
+          <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
+        </div>
+
+        <TextAnimation
+          className="max-w-3xl mx-auto text-center text-sm md:text-lg text-foreground/80 leading-relaxed mb-12"
+          animationType="fadeUp"
+          delay={0.1}
+        >
+          We are a digital studio dedicated to crafting exceptional web
+          experiences.
+        </TextAnimation>
+
+        {/* Content */}
         <div
           ref={contentRef}
-          className="lg:col-span-2 space-y-6 md:space-y-10 text-justify pt-0 lg:pt-20"
+          className="max-w-4xl mx-auto space-y-6 md:space-y-8"
         >
-          {/* Introduction */}
-          <div className="space-y-4">
-            <TextAnimation
-              className="text-sm md:text-xl text-foreground leading-relaxed w-full"
-              animationType="fadeUp"
-              delay={0.2}
-            >
-              Forgenest is where innovation meets execution. We are a collective
-              of designers, developers, and strategists dedicated to building
-              digital experiences that inspire growth and transformation. Our
-              approach is rooted in curiosity and guided by craftsmanship—every
-              interface, interaction, and pixel is intentional. We partner
-              closely with founders and teams to uncover the real problem behind
-              the brief and shape product experiences that feel simple, human,
-              and inevitable.
-            </TextAnimation>
-          </div>
-          <div className="space-y-6">
-            <TextAnimation
-              className="text-sm md:text-xl text-foreground leading-relaxed w-full"
-              animationType="fadeUp"
-              delay={0.3}
-            >
-              Our nest nurtures ideas from conception to reality. We blend
-              technology, creativity, and strategy to forge digital experiences
-              that inspire growth and imagination. Prototyping early and often
-              allows us to learn fast and build with confidence, while
-              structured discovery reduces risk and uncovers opportunities for
-              differentiation.
-            </TextAnimation>
-          </div>
+          <TextAnimation
+            className="text-sm md:text-lg text-foreground text-center leading-relaxed"
+            animationType="fadeUp"
+            delay={0.1}
+          >
+            Forgenest is a digital studio dedicated to crafting exceptional web
+            experiences. We specialize in building custom web applications and
+            modern websites that drive real business results.
+          </TextAnimation>
 
-          {/* Our Approach */}
-          <div className="space-y-6">
-            <TextAnimation
-              className="text-sm md:text-xl text-foreground leading-relaxed w-full"
-              animationType="fadeUp"
-              delay={0.4}
-            >
-              We don't just build products—we forge lasting partnerships. Our
-              multi‑disciplinary teams operate as an extension of yours, sharing
-              context, constraints, and accountability. After launch, we measure
-              impact, ship improvements, and evolve the roadmap with real user
-              insights. This cycle—discover, design, develop, validate—helps us
-              deliver outcomes that move the needle for your customers and your
-              business, not just outputs on a timeline.
-            </TextAnimation>
+          <TextAnimation
+            className="text-sm md:text-lg text-foreground text-center leading-relaxed"
+            animationType="fadeUp"
+            delay={0.2}
+          >
+            Our approach combines strategic thinking with technical expertise.
+            We work closely with our clients to understand their vision,
+            challenges, and goals. From custom dashboards and admin panels to
+            SaaS platforms and high-converting marketing websites, we deliver
+            solutions that are both beautiful and functional.
+          </TextAnimation>
+
+          <TextAnimation
+            className="text-sm md:text-lg text-foreground text-center leading-relaxed"
+            animationType="fadeUp"
+            delay={0.3}
+          >
+            We believe in clean code, thoughtful design, and transparent
+            partnerships. Every project is an opportunity to create something
+            that matters—something that doesn't just meet requirements, but
+            exceeds expectations and delivers measurable impact for your
+            business.
+          </TextAnimation>
+
+          <div className="flex justify-center mt-8">
             <Link
               href="/about-us"
-              className="inline-flex items-center gap-3 bg-foreground text-background px-6 md:px-8 py-3 md:py-4 rounded-full font-oswald text-sm md:text-base uppercase hover:opacity-90 transition-opacity duration-300 group mt-4"
+              className="inline-flex items-center gap-3 bg-foreground text-background px-6 md:px-8 py-3 md:py-4 rounded-full font-oswald text-sm md:text-base uppercase hover:opacity-90 transition-opacity duration-300 group"
             >
-              Learn More About Us
+              Our Story
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
             </Link>
           </div>

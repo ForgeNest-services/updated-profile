@@ -1,9 +1,9 @@
 import Hero from "./Hero";
 import About from "./About";
-import WhatWeDo from "./WhatWeDo";
+import Services from "./Services";
 import OurProcess from "./OurProcess";
-import Expertise from "./Expertise";
+import FeaturedBlogs from "./FeaturedBlogs";
 import Newsletter from "./NewsLetter";
 import Footer from "./Footer";
 
-export { Hero, About, WhatWeDo, OurProcess, Expertise, Newsletter, Footer };
+export { Hero, About, Services, OurProcess, FeaturedBlogs, Newsletter, Footer };

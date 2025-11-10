@@ -5,6 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { servicesData } from "@/lib/constants/services";
+import OptimizedVideo from "@/components/ui/OptimizedVideo";
+import { useBarbaTransition } from "@/hooks/useBarbaTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +14,9 @@ export default function ServicesPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement[]>([]);
   const ctaRef = useRef<HTMLDivElement>(null);
+
+  // Handle Barba page transitions
+  useBarbaTransition();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -145,17 +150,13 @@ export default function ServicesPage() {
             >
               {/* Video Section */}
               <div className={`relative ${!isEven ? "lg:col-start-2" : ""}`}>
-                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
+                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-foreground/5">
+                  <OptimizedVideo
+                    src={service.mediaUrl}
+                    poster={`/images/poster-${service.id}.jpg`}
                     className="w-full h-full object-cover"
-                  >
-                    <source src={service.mediaUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                    alt={service.title}
+                  />
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent pointer-events-none" />
                 </div>

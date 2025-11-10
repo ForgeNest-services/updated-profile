@@ -14,6 +14,9 @@ export const initBarba = () => {
                 return Promise.resolve();
               }
 
+              // Kill all GSAP animations on current container
+              gsap.killTweensOf(data.current.container);
+
               return gsap
                 .timeline()
                 .to(data.current.container, {
@@ -52,12 +55,17 @@ export const initBarba = () => {
                 ease: "power3.out",
               });
             },
+            after(data) {
+              // Dispatch custom event to notify components to re-initialize
+              window.dispatchEvent(new CustomEvent("barba:after", { detail: data }));
+            },
           },
           {
             name: "home-transition",
             from: "home",
-            to: "about",
+            to: "about-us",
             leave(data) {
+              gsap.killTweensOf(data.current.container);
               return gsap.timeline().to(data.current.container, {
                 opacity: 0,
                 rotationY: 15,
@@ -77,13 +85,17 @@ export const initBarba = () => {
                 duration: 0.8,
                 ease: "power3.out",
               });
+            },
+            after(data) {
+              window.dispatchEvent(new CustomEvent("barba:after", { detail: data }));
             },
           },
           {
             name: "about-transition",
-            from: "about",
+            from: "about-us",
             to: "home",
             leave(data) {
+              gsap.killTweensOf(data.current.container);
               return gsap.timeline().to(data.current.container, {
                 opacity: 0,
                 rotationY: -15,
@@ -103,6 +115,9 @@ export const initBarba = () => {
                 duration: 0.8,
                 ease: "power3.out",
               });
+            },
+            after(data) {
+              window.dispatchEvent(new CustomEvent("barba:after", { detail: data }));
             },
           },
         ],
@@ -115,7 +130,7 @@ export const initBarba = () => {
             },
           },
           {
-            namespace: "about",
+            namespace: "about-us",
             beforeEnter() {
               // Reset scroll position for about page
               window.scrollTo(0, 0);
