@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { TbMenu4 } from "react-icons/tb";
-import { navLinks } from '@/lib/constants/navlinks';
-import MobileNav from './MobileNav';
-import { gsap } from 'gsap';
+import { navLinks } from "@/lib/constants/navlinks";
+import MobileNav from "./MobileNav";
+import { gsap } from "gsap";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,34 +26,47 @@ export default function Navbar() {
         if (window.innerWidth >= 1024) {
           if (shouldBeScrolled) {
             // Transition to hamburger - hide logo and nav links
-            if (navLinksRef.current && hamburgerRef.current && logoRef.current) {
+            if (
+              navLinksRef.current &&
+              hamburgerRef.current &&
+              logoRef.current
+            ) {
               gsap.to([navLinksRef.current, logoRef.current], {
                 opacity: 0,
                 x: 20,
                 duration: 0.3,
-                ease: 'power2.inOut',
+                ease: "power2.inOut",
                 onComplete: () => {
                   gsap.fromTo(
                     hamburgerRef.current,
                     { scale: 0, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.3, ease: 'back.out(1.7)' }
+                    {
+                      scale: 1,
+                      opacity: 1,
+                      duration: 0.3,
+                      ease: "back.out(1.7)",
+                    }
                   );
                 },
               });
             }
           } else {
             // Transition to nav links - show logo and nav links
-            if (navLinksRef.current && hamburgerRef.current && logoRef.current) {
+            if (
+              navLinksRef.current &&
+              hamburgerRef.current &&
+              logoRef.current
+            ) {
               gsap.to(hamburgerRef.current, {
                 scale: 0,
                 opacity: 0,
                 duration: 0.3,
-                ease: 'power2.inOut',
+                ease: "power2.inOut",
                 onComplete: () => {
                   gsap.fromTo(
                     [navLinksRef.current, logoRef.current],
                     { opacity: 0, x: 20 },
-                    { opacity: 1, x: 0, duration: 0.3, ease: 'power2.out' }
+                    { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }
                   );
                 },
               });
@@ -63,21 +76,23 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [isScrolled]);
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 w-full">
+      <header className="fixed top-0 left-0 right-0 z-40 w-full lg:backdrop-blur-0 backdrop-blur-md">
         <div className="w-full max-w-screen-2xl mx-auto px-2 sm:px-4 lg:px-6 py-2 sm:py-4">
           <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
             {/* Logo */}
-            <Link 
+            <Link
               ref={logoRef}
-              href="/" 
+              href="/"
               className={`font-oswald text-foreground text-sm text-wrap sm:text-sm lg:text-lg font-medium tracking-wider hover:opacity-70 transition-opacity duration-300 ${
-                isScrolled ? 'lg:opacity-0 pointer-events-none' : 'lg:opacity-100'
+                isScrolled
+                  ? "lg:opacity-0 pointer-events-none"
+                  : "lg:opacity-100"
               }`}
             >
               FORGENEST SERVICES
@@ -87,7 +102,7 @@ export default function Navbar() {
             <div
               ref={navLinksRef}
               className={`hidden lg:flex items-center gap-6 xl:gap-8 ${
-                isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
               }`}
             >
               {navLinks.map((link) => (
@@ -106,8 +121,10 @@ export default function Navbar() {
             <button
               ref={hamburgerRef}
               onClick={() => setIsMobileMenuOpen(true)}
-              className={`flex items-center justify-center bg-foreground text-white rounded-full p-2 hover:opacity-80 transition-opacity duration-300 lg:absolute lg:right-8 ${
-                isScrolled ? 'lg:scale-100 lg:opacity-100' : 'lg:scale-0 lg:opacity-0'
+              className={`flex items-center justify-center bg-foreground text-white rounded-full p-2 hover:opacity-80 transition-opacity duration-300 lg:absolute lg:right-8 lg:flex ${
+                isScrolled
+                  ? "lg:scale-100 lg:opacity-100"
+                  : "lg:scale-0 lg:opacity-0"
               }`}
               aria-label="Open menu"
             >
@@ -118,7 +135,11 @@ export default function Navbar() {
       </header>
 
       {/* Mobile Navigation Menu */}
-      <MobileNav isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <MobileNav
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        isScrolled={isScrolled}
+      />
     </>
   );
 }

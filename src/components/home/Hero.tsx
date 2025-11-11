@@ -191,7 +191,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative bg-background overflow-hidden flex items-center justify-center py-28"
+      className="relative bg-background overflow-hidden flex items-center justify-center py-36 md:py-28 px-4 md:px-0"
     >
       {/* Decorative floating circles */}
       {circles.map((circle, index) => (

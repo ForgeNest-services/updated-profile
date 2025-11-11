@@ -1,14 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { ArrowRight, X } from 'lucide-react';
-import { navLinks } from '@/lib/constants/navlinks';
-import gsap from 'gsap';
+import React, { useEffect, useRef } from "react";
+import Link from "next/link";
+import { X } from "lucide-react";
+import { navLinks } from "@/lib/constants/navlinks";
+import gsap from "gsap";
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
+  isScrolled?: boolean;
 }
 
-export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
+export default function MobileNav({
+  isOpen,
+  onClose,
+  isScrolled = false,
+}: MobileNavProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement[]>([]);
 
@@ -18,7 +23,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         gsap.to(menuRef.current, {
           x: 0,
           duration: 0.6,
-          ease: 'power3.inOut',
+          ease: "power3.inOut",
         });
 
         gsap.fromTo(
@@ -29,15 +34,15 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             opacity: 1,
             duration: 0.5,
             stagger: 0.1,
-            ease: 'power2.out',
+            ease: "power2.out",
             delay: 0.2,
           }
         );
       } else {
         gsap.to(menuRef.current, {
-          x: '100%',
+          x: "100%",
           duration: 0.6,
-          ease: 'power3.inOut',
+          ease: "power3.inOut",
         });
       }
     }
@@ -46,17 +51,21 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (
+        isOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen, onClose]);
 
@@ -66,13 +75,22 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
       className="fixed top-0 right-0 h-screen w-full md:w-[400px] bg-foreground text-white z-50 translate-x-full"
     >
       <div className="flex flex-col h-full p-6">
-        <button
-          onClick={onClose}
-          className="self-end mb-12 hover:rotate-90 transition-transform duration-300"
-          aria-label="Close menu"
-        >
-          <X size={24} />
-        </button>
+        <div className="flex justify-between items-center mb-12">
+          <div
+            className={`font-oswald text-white text-sm font-medium tracking-wider transition-all duration-300 ${
+              isScrolled ? "opacity-0 hidden" : "opacity-100"
+            }`}
+          >
+            FORGENEST SERVICES
+          </div>
+          <button
+            onClick={onClose}
+            className="hover:rotate-90 transition-transform duration-300 ml-auto"
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
 
         <nav className="flex-1 flex flex-col justify-center gap-6 sm:gap-8">
           {navLinks.map((link, index) => (
@@ -90,19 +108,19 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               >
                 <span>{link.label}</span>
                 <div className="flex-shrink-0 opacity-100 lg:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
-                  <svg 
-                    width="48" 
-                    height="24" 
-                    viewBox="0 0 48 24" 
-                    fill="none" 
+                  <svg
+                    width="48"
+                    height="24"
+                    viewBox="0 0 48 24"
+                    fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-10 h-6 sm:w-12 sm:h-7"
                   >
-                    <path 
-                      d="M0 12H46M46 12L35 1M46 12L35 23" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
+                    <path
+                      d="M0 12H46M46 12L35 1M46 12L35 23"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
