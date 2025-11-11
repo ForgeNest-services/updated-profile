@@ -232,23 +232,23 @@ export const services: Service[] = [
     ],
     caseStudies: [
       {
-        title: "E-Commerce Platform Rebuild",
+        title: "Fintech Startup Dashboard",
         description:
-          "Modernized a legacy e-commerce system to handle 10x more traffic.",
+          "Built a real-time dashboard for a fintech startup to manage transactions and user analytics.",
         results: [
-          "300% increase in performance",
-          "Reduced server costs by 40%",
-          "Improved user satisfaction score from 3.2 to 4.8/5",
+          "Launched MVP in 8 weeks",
+          "Supports 10,000+ monthly active users",
+          "Reduced manual reporting time by 80%",
         ],
       },
       {
-        title: "SaaS Analytics Dashboard",
+        title: "Task Management App",
         description:
-          "Built a comprehensive analytics platform for a growing SaaS startup.",
+          "Created a collaborative task management tool for remote teams.",
         results: [
-          "Real-time data processing for 1M+ events/day",
-          "Reduced query time from 30s to 2s",
-          "Enabled 500+ enterprise clients",
+          "Intuitive interface adopted by 50+ teams",
+          "Real-time collaboration features",
+          "Successfully scaled from 0 to 5,000 users",
         ],
       },
     ],
@@ -444,23 +444,23 @@ export const services: Service[] = [
     ],
     caseStudies: [
       {
-        title: "Corporate Website Redesign",
+        title: "Startup Portfolio Website",
         description:
-          "Transformed a dated corporate website into a modern, conversion-focused platform.",
+          "Designed and developed a modern portfolio website for a tech startup to showcase their services.",
         results: [
-          "40% increase in lead generation",
-          "2.5s average load time (previously 8s)",
-          "96 SEO score",
+          "Launched in 4 weeks",
+          "Mobile-responsive design with fast load times",
+          "Integrated contact forms and inquiry system",
         ],
       },
       {
-        title: "E-Commerce Store Launch",
+        title: "Local Business Website",
         description:
-          "Built a complete e-commerce website with integrated payment and inventory systems.",
+          "Created a professional website for a local service business with online booking system.",
         results: [
-          "Launch in 8 weeks",
-          "$500K revenue in first 6 months",
-          "95% mobile conversion rate",
+          "Easy-to-update content management system",
+          "SEO optimization for local search",
+          "Increased online inquiries by 3x",
         ],
       },
     ],
