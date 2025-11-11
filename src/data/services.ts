@@ -307,7 +307,7 @@ export const services: Service[] = [
         iconName: "Wrench",
       },
     ],
-    mediaUrl: "/video/website.mp4",
+    mediaUrl: "/video/modern_web.mp4",
     mediaType: "video" as const,
     whatWeDo: {
       title: "What We Do in Website Design & Development",
