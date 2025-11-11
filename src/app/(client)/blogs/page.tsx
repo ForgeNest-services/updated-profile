@@ -49,7 +49,7 @@ export default async function BlogsPage({
           __html: JSON.stringify(breadcrumbSchema),
         }}
       />
-      <main className="bg-background text-foreground">
+      <main className="bg-background text-foreground pb-20 md:pb-32">
         <Breadcrumb
           items={[
             { label: "Home", url: "/" },

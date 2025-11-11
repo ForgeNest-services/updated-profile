@@ -7,47 +7,13 @@ import { ArrowRight, Check } from "lucide-react";
 import TitleAnimation from "../ui/TitleAnimation";
 import TextAnimation from "../ui/TextAnimation";
 import OptimizedVideo from "../ui/OptimizedVideo";
+import { services } from "@/data/services";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const servicesRef = useRef<HTMLDivElement[]>([]);
-
-  const services = [
-    {
-      id: 1,
-      title: "Custom Web Applications",
-      description:
-        "Build powerful, scalable web applications tailored to your business needs. From admin dashboards to full-featured SaaS platforms, we create robust solutions that streamline operations and drive growth.",
-      features: [
-        "Admin dashboards & control panels",
-        "SaaS platforms & portals",
-        "Real-time collaboration tools",
-        "Custom integrations & APIs",
-        "Scalable architecture",
-        "Cloud deployment & hosting",
-      ],
-      mediaUrl: "/video/custom-software.mp4",
-      mediaType: "video" as const,
-    },
-    {
-      id: 2,
-      title: "Modern Website Design & Development",
-      description:
-        "Your website is your digital presence. We create stunning, high-performance websites that captivate visitors and convert them into customers. Beautiful design meets powerful functionality.",
-      features: [
-        "Responsive & fast-loading",
-        "SEO optimized structure",
-        "High-converting design",
-        "CMS integration options",
-        "Analytics & tracking",
-        "Ongoing support & updates",
-      ],
-      mediaUrl: "/video/website.mp4",
-      mediaType: "video" as const,
-    },
-  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -200,7 +166,7 @@ export default function Services() {
 
                 {/* CTA */}
                 <Link
-                  href="/our-services"
+                  href={`/services/${service.slug}`}
                   className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-full font-oswald text-sm uppercase hover:opacity-90 transition-opacity duration-300 group mt-4"
                 >
                   Learn More

@@ -73,7 +73,10 @@ export default function ServicesPage() {
   const faqSchema = generateFAQSchema(servicesFAQs);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: "https://www.forgenestservices.com.np" },
-    { name: "Our Services", url: "https://www.forgenestservices.com.np/our-services" },
+    {
+      name: "Our Services",
+      url: "https://www.forgenestservices.com.np/our-services",
+    },
   ]);
 
   return (

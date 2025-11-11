@@ -4,9 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import type { BlogRow } from "@/server/blog";
-import { listPublishedBlogsPaginated } from "@/server/blog";
-import BlogCard from "@/components/blogs/BlogCard";
+import BlogCard, { BlogCardData } from "@/components/blogs/BlogCard";
 import TitleAnimation from "../ui/TitleAnimation";
 import TextAnimation from "../ui/TextAnimation";
 
@@ -15,17 +13,17 @@ gsap.registerPlugin(ScrollTrigger);
 export default function FeaturedBlogs() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
-  const [blogs, setBlogs] = useState<BlogRow[]>([]);
+  const [blogs, setBlogs] = useState<BlogCardData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const { items } = await listPublishedBlogsPaginated({
-          page: 1,
-          pageSize: 3,
-        });
-        setBlogs(items || []);
+        const response = await fetch("/api/blogs?limit=3");
+        if (response.ok) {
+          const data = await response.json();
+          setBlogs(data.blogs || []);
+        }
       } catch (error) {
         console.error("Error fetching blogs:", error);
       } finally {
@@ -75,10 +73,7 @@ export default function FeaturedBlogs() {
       >
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-start items-start flex-col mb-12 md:mb-16">
-            <TitleAnimation
-              as="h2"
-              className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight"
-            >
+            <TitleAnimation className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
               Latest Insights
             </TitleAnimation>
             <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
@@ -97,10 +92,7 @@ export default function FeaturedBlogs() {
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex justify-start items-start flex-col mb-12 md:mb-16">
-          <TitleAnimation
-            as="h2"
-            className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight"
-          >
+          <TitleAnimation className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight">
             Latest Insights
           </TitleAnimation>
           <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
