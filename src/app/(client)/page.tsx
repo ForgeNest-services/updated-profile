@@ -7,6 +7,7 @@ import {
   Services,
   FeaturedBlogs,
   FAQ,
+  ClientsShowcase,
 } from "@/components/home";
 import {
   generateLocalBusinessSchema,
@@ -17,8 +18,6 @@ import {
 import { homeFAQs } from "@/lib/constants/faqs";
 
 export const revalidate = 3600;
-
-export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Forgenest Services - Leading IT Solutions Provider in Nepal",
@@ -116,6 +115,7 @@ export default function Home() {
         <About />
         <Services />
         <OurProcess />
+        <ClientsShowcase />
         <FeaturedBlogs />
         <FAQ
           items={homeFAQs}

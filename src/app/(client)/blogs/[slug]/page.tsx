@@ -10,7 +10,10 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
 import { ShareButtons } from "@/components/blogs";
-import { generateBlogPostSchema, generateBreadcrumbSchema } from "@/lib/constants/seo";
+import {
+  generateBlogPostSchema,
+  generateBreadcrumbSchema,
+} from "@/lib/constants/seo";
 
 // export const dynamic = "force-dynamic";
 
@@ -93,7 +96,10 @@ export default async function BlogDetailPage({
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: "https://www.forgenestservices.com.np" },
     { name: "Blogs", url: "https://www.forgenestservices.com.np/blogs" },
-    { name: blog.title, url: `https://www.forgenestservices.com.np/blogs/${blog.slug}` },
+    {
+      name: blog.title,
+      url: `https://www.forgenestservices.com.np/blogs/${blog.slug}`,
+    },
   ]);
 
   // Format date
@@ -110,7 +116,7 @@ export default async function BlogDetailPage({
   });
 
   return (
-    <article className="bg-background text-foreground py-20 md:py-32">
+    <article className="bg-background text-foreground ">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

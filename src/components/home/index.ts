@@ -3,6 +3,7 @@ import About from "./About";
 import Services from "./Services";
 import OurProcess from "./OurProcess";
 import FeaturedBlogs from "./FeaturedBlogs";
+import ClientsShowcase from "./ClientsShowcase";
 import Newsletter from "./NewsLetter";
 import FAQ from "./FAQ";
 import Footer from "./Footer";
@@ -13,6 +14,7 @@ export {
   Services,
   OurProcess,
   FeaturedBlogs,
+  ClientsShowcase,
   Newsletter,
   Footer,
   FAQ,
