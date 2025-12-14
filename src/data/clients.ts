@@ -8,14 +8,20 @@ export type Client = {
 export const clients: Client[] = [
   {
     id: "indrayani-enterprises",
-    name: "Indrayani Enterprises",
+    name: "Indrayani Enterprises Trade Concern",
     logo: "/images/clients/ietc.png",
     link: "https://ietc.com.np",
   },
   {
     id: "mataindrayani-savings",
-    name: "Trade Concern, Mataindrayani Savings and Cooperative Limited",
+    name: "Mataindrayani Savings and Cooperative Limited",
     logo: "/images/clients/mts.png",
     link: "https://www.mataindrayanisaccos.com.np/",
+  },
+  {
+    id: "bhattaguru-astrologer",
+    name: "Bhattaguru Astrologer",
+    logo: "/images/clients/bhattaguru.png",
+    link: "https://www.bhattaguru.com/",
   },
 ];
