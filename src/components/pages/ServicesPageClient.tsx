@@ -9,6 +9,8 @@ import { servicesFAQs } from "@/lib/constants/faqs";
 import OptimizedVideo from "@/components/ui/OptimizedVideo";
 import FAQ from "@/components/home/FAQ";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import TitleAnimation from "../ui/TitleAnimation";
+import TextAnimation from "../ui/TextAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,34 +113,28 @@ export default function ServicesPageClient() {
   return (
     <main className="bg-background text-foreground">
       {/* Breadcrumb */}
-      <Breadcrumb
+      {/* <Breadcrumb
         items={[
           { label: "Home", url: "/" },
           { label: "Our Services", url: "/our-services", current: true },
         ]}
-      />
+      /> */}
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-foreground/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-foreground/5 rounded-full blur-3xl" />
-        </div>
-
-        <div
-          ref={heroRef}
-          className="relative w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        >
-          <h1 className="font-oswald text-2xl md:text-4xl lg:text-6xl font-normal mb-6 tracking-tighter leading-tight">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-start items-start flex-col">
+          <TitleAnimation
+            as="h1"
+            className="text-2xl text-center lg:text-start md:text-4xl lg:text-6xl font-oswald font-normal text-foreground tracking-tighter leading-tight"
+          >
             Our Services
-          </h1>
-          <div className="w-20 lg:w-40 h-1 bg-foreground mx-auto mb-6" />
-          <p className="text-sm md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            Transforming ideas into reality through innovative solutions and
-            creative excellence
-          </p>
+          </TitleAnimation>
+          <div className="mt-2 lg:mt-6 w-20 lg:w-40 h-1 bg-foreground" />
+          <TextAnimation className="mt-4 text-neutral-800 text-base md:text-lg text-start">
+            We deliver the best services you need to get yourself started.
+          </TextAnimation>
         </div>
-      </section>
+      </div>
 
       {/* Services Sections */}
       <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 md:space-y-40 py-20">
