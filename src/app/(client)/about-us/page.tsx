@@ -95,12 +95,12 @@ export default function AboutUsPage() {
         }}
       />
       <main className="bg-background text-foreground font-oswald max-w-screen-4xl mx-auto space-y-6">
-        <Breadcrumb
+        {/* <Breadcrumb
           items={[
             { label: "Home", url: "/" },
             { label: "About Us", url: "/about-us", current: true },
           ]}
-        />
+        /> */}
         <AboutUsHero />
         <AboutUsStory />
         {/* <AboutUsTeam /> */}

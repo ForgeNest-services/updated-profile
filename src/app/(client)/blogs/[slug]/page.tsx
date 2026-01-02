@@ -116,7 +116,7 @@ export default async function BlogDetailPage({
   });
 
   return (
-    <article className="bg-background text-foreground ">
+    <article className="bg-background text-foreground py-12 md:py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -126,13 +126,13 @@ export default async function BlogDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Breadcrumb */}
-      <Breadcrumb
+      {/* <Breadcrumb
         items={[
           { label: "Home", url: "/" },
           { label: "Blogs", url: "/blogs" },
           { label: blog.title, url: `/blogs/${blog.slug}`, current: true },
         ]}
-      />
+      /> */}
       {/* Content Container */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section with Featured Image */}

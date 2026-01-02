@@ -66,10 +66,10 @@ export default async function ServiceDetailPage({
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-background text-foreground">
+      <section className="bg-background text-foreground py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <Breadcrumb
+          {/* <Breadcrumb
             items={[
               { label: "Home", url: "/" },
               { label: "Services", url: "/our-services" },
@@ -79,7 +79,7 @@ export default async function ServiceDetailPage({
                 current: true,
               },
             ]}
-          />
+          /> */}
 
           {/* Header */}
           <div className="mt-8 md:mt-12">

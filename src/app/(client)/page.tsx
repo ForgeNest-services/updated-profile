@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import {
   About,
-  Hero,
-  OurProcess,
   Newsletter,
   Services,
   FeaturedBlogs,
   FAQ,
-  ClientsShowcase,
   NewHeroSection,
   Testimonials,
+  CallToAction,
 } from "@/components/home";
 import {
   generateLocalBusinessSchema,
@@ -118,10 +116,9 @@ export default function Home() {
         <About />
         <Services />
         <NewProcess />
-        {/* <OurProcess /> */}
         <Testimonials />
-        {/* <ClientsShowcase /> */}
         <FeaturedBlogs />
+        <CallToAction />
         <FAQ
           items={homeFAQs}
           title="Frequently Asked Questions"

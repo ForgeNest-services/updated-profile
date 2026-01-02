@@ -11,6 +11,7 @@ import FAQ from "./FAQ";
 import Footer from "./Footer";
 import Testimonials from "./Testimonials";
 
+import CallToAction from "./CallToAction";
 export {
   Hero,
   NewHeroSection,
@@ -24,4 +25,5 @@ export {
   Footer,
   FAQ,
   Testimonials,
+  CallToAction,
 };

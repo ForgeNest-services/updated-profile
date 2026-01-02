@@ -50,13 +50,13 @@ export default async function BlogsPage({
         }}
       />
       <main className="bg-background text-foreground pb-20 md:pb-32">
-        <Breadcrumb
+        {/* <Breadcrumb
           items={[
             { label: "Home", url: "/" },
             { label: "Blogs", url: "/blogs", current: true },
           ]}
-        />
-        <div className="max-w-screen-4xl mx-auto">
+        /> */}
+        <div className="max-w-screen-4xl mx-auto py-12 md:py-16">
           <BlogsHeader />
           <BlogManager
             items={items}
