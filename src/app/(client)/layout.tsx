@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "../globals.css";
 import { Navbar, SmoothScroll } from "@/components/commons";
 import { Footer } from "@/components/home";
+import NewNav from "@/components/commons/NewNav";
 
 const oswald = localFont({
   src: "../../../public/fonts/oswald/Oswald-VariableFont_wght.ttf",
@@ -179,11 +180,11 @@ export default function RootLayout({
         )}
       </head>
       <body className={`${oswald.variable} font-sans antialiased`}>
-        <Navbar />
-        <SmoothScroll>
-          {children}
-          <Footer />
-        </SmoothScroll>
+        <NewNav />
+        {/* <SmoothScroll> */}
+        {children}
+        <Footer />
+        {/* </SmoothScroll> */}
       </body>
     </html>
   );

@@ -108,7 +108,7 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={link.href || "#"}
                   className="font-oswald text-foreground text-sm lg:text-base xl:text-lg capitalize relative group font-semibold"
                 >
                   {link.label}

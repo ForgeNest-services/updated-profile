@@ -77,7 +77,7 @@ export default function FeaturedBlogsClient({
         </TextAnimation>
 
         {/* Blog Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12">
           {blogs.map((blog, index) => (
             <div
               key={blog.id}

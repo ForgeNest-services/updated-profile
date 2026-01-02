@@ -8,6 +8,8 @@ import {
   FeaturedBlogs,
   FAQ,
   ClientsShowcase,
+  NewHeroSection,
+  Testimonials,
 } from "@/components/home";
 import {
   generateLocalBusinessSchema,
@@ -16,6 +18,7 @@ import {
   generateFAQSchema,
 } from "@/lib/constants/seo";
 import { homeFAQs } from "@/lib/constants/faqs";
+import NewProcess from "@/components/home/NewProcess";
 
 export const revalidate = 3600;
 
@@ -111,11 +114,13 @@ export default function Home() {
         }}
       />
       <main className="bg-background text-foreground font-oswald space-y-20 md:space-y-32">
-        <Hero />
+        <NewHeroSection />
         <About />
         <Services />
-        <OurProcess />
-        <ClientsShowcase />
+        <NewProcess />
+        {/* <OurProcess /> */}
+        <Testimonials />
+        {/* <ClientsShowcase /> */}
         <FeaturedBlogs />
         <FAQ
           items={homeFAQs}

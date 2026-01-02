@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
@@ -102,7 +103,7 @@ export default function MobileNav({
               className=""
             >
               <Link
-                href={link.href}
+                href={link.href || "#"}
                 onClick={onClose}
                 className="group flex items-center justify-between w-full text-xl sm:text-2xl md:text-3xl font-oswald capitalize hover:translate-x-1 transition-transform duration-300"
               >

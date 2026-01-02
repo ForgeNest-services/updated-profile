@@ -39,7 +39,7 @@ export default function FAQ({ items, title, description }: FAQProps) {
         )}
 
         {/* FAQ Items */}
-        <Accordion type="single" collapsible className="w-full space-y-3 !mb-4">
+        <Accordion type="single" collapsible className="w-full space-y-3">
           {items.map((item, index) => (
             <AccordionItem
               key={index}

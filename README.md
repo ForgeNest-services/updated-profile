@@ -37,3 +37,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 git remote set-url origin git@github.com-forgenest:ForgeNest-services/updated-profile.git
+
+git clone git@github.com:ForgeNest-services/school-demo.git
