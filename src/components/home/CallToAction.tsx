@@ -66,7 +66,7 @@ export default function CallToAction() {
           {/* CTA Button */}
           <div ref={buttonRef} className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/contact-us"
+              href="/request-quote"
               className="inline-flex items-center gap-3 bg-white text-foreground px-4 md:px-6 py-3 rounded-full font-oswald text-base md:text-lg uppercase transition-all duration-300 group shadow-lg hover:shadow-xl"
             >
               Get Started
