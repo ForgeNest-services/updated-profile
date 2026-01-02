@@ -90,10 +90,10 @@ export default function NewMobileNav() {
 
           <div className="pt-4">
             <Link
-              href="/contact-us"
+              href="/request-quote"
               className="block w-full text-center rounded-full bg-[#dd4f43] hover:bg-[#c44539] px-6 py-3 text-sm font-oswald uppercase font-medium text-white transition-colors shadow-sm hover:shadow-md"
             >
-              Get Started
+              Get Quote
             </Link>
           </div>
         </div>

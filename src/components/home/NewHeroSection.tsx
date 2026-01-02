@@ -143,7 +143,7 @@ export default function NewHeroSection() {
         >
           {/* Primary CTA */}
           <Link
-            href="/contact-us"
+            href="/request-quote"
             className="group inline-flex items-center gap-2 bg-white  text-foreground font-semibold px-6 py-3 rounded-full font-oswald text-sm md:text-base uppercase transition-all duration-300 hover:shadow-lg hover:shadow-foreground/50 hover:-translate-y-0.5 w-full sm:w-auto justify-center"
           >
             Start Your Project

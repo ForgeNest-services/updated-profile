@@ -94,7 +94,7 @@ export default function AboutUsPage() {
           __html: JSON.stringify(breadcrumbSchema),
         }}
       />
-      <main className="bg-background text-foreground font-oswald max-w-screen-4xl mx-auto space-y-6">
+      <main className="bg-background text-foreground font-oswald max-w-screen-4xl mx-auto space-y-6 pb-6">
         {/* <Breadcrumb
           items={[
             { label: "Home", url: "/" },

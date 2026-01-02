@@ -138,10 +138,10 @@ export default function NewNavbar() {
 
         <div className="flex items-center gap-4">
           <Link
-            href="/contact-us"
+            href="/request-quote"
             className="hidden lg:block rounded-full bg-foreground  px-6 py-3 text-sm font-oswald uppercase text-white transition-colors shadow-sm hover:shadow-md"
           >
-            Get Started
+            Get Quote
           </Link>
 
           <NewMobileNav />
